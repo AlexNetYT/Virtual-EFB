@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='charts_styles.css') }}"
+    />
+    <link
+      rel="icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      sizes="any"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename='images/favicon.ico') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <title>AeroNav Viewer</title>
+  </head>
+  <body>
+    <div class="welcome-overlay">
+      <img
+        class="welcome-picture"
+        src="{{ url_for('static', filename='images/favicon.ico') }}"
+      />
+      <div class="welcome-text">Welcome to AeroNav Viewer!</div>
+    </div>
+    <div class="loading-overlay">
+      <div class="loading-text">
+        Charts is downloading. Please Wait. It May Take a while
+      </div>
+      <div class="loading-spinner"></div>
+    </div>
+    <div class="container">
+      <iframe id="pdf-frame" class="pdf-viewer" src="" frameborder="0">
+      </iframe>
+      <div class="pdf-list">
+        <h1 id="header">Enter ICAO</h1>
+        <div class="pdf-controls">
+          <input
+            type="text"
+            id="icaoInput"
+            maxlength="4"
+            placeholder="Enter ICAO"
+          />
+          <button id="loadPdfBtn">Load</button>
+          <button id="redownloadPdfBtn">ReDownload</button>
+        </div>
+        <div class="menu-bar">
+          <button class="menu-button" data-tag="SID">SID</button>
+          <button class="menu-button" data-tag="STAR">STAR</button>
+          <button class="menu-button" data-tag="FINAL">FINAL</button>
+          <button class="menu-button" data-tag="AIRPORT">AIRPORT</button>
+          <!-- Add more buttons for other categories as needed -->
+          <button class="menu-button" data-tag="OTHER">OTHER</button>
+        </div>
+        <ul id="pdfList" class="pdf-list"></ul>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='charts_script.js') }}"></script>
+  </body>
+</html>

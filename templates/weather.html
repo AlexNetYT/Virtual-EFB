@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='weather_styles.css') }}">
+    <title>Weather Module</title>
+</head>
+<body>
+    <div class="weather-container">
+        <h1>Weather Information</h1>
+        <div class="icao-input">
+            <input type="text" id="icaoCode" maxlength="4" placeholder="ICAO">
+            <button id="loadWeatherBtn">Load Weather</button>
+        </div>
+        <div class="weather-details closed" style="transition: all 1s linear;" id="weather-details-container">
+            <!-- Weather details will be displayed here -->
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='weather_script.js') }}"></script>
+</body>
+</html>

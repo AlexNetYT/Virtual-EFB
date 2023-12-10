@@ -1,0 +1,5 @@
+*.pyc
+*.pdf
+__pycache__/
+modules/pdf_viewer/__pycache__/
+modules/weather/__pycache__/

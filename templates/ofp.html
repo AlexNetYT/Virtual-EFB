@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='ofp_styles.css') }}">
+    <title>OFP Module</title>
+</head>
+<body>
+    <div class="ofp-container">
+        <div class="header-container">
+            <div id="simbriefIdBlock">
+                <input id="simbriefId" style="margin-left:0; margin-right:15px;">
+                <button id="simbriefLoad" style="width: 20%"><img src="{{ url_for('static', filename='images/sync.png') }}" alt="Sync" style="padding-top: 3px;width: 14px;"></button>
+            </div>
+            <div id="originBlock">
+                <label for="origin" class="lblFor">Departure:</label>
+                <span id="origin" class="lblFor lblspan"></span>
+            </div>
+            <div id="destBlock">
+                <label for="destination" class="lblFor">Arrival:</label>
+                <span id="destination" class="lblFor lblspan"></span>
+            </div>
+            
+            <div id="aircraftLoadsheetBlock">
+                <label for="acType" class="lblFor">Aircraft:</label>
+                <span id="acType" class="lblFor lblspan"></span>
+                
+            </div>
+            <button id="loadLoadsheetBtn">Show Loadsheet</button>
+        </div>
+        
+        <div class="table-container">
+            <!-- Table for fixes goes here -->
+            <table id="fixTable" style=" ">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Ident</th>
+                        <th>Via</th>
+                        <th>EFOB</th>
+                        <th>Altitude (Feet)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows of fixes will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='ofp_script.js') }}"></script>
+</body>
+</html>

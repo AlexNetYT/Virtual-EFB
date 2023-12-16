@@ -3,6 +3,34 @@
     font-family: Code;
     src: url(code_pro.otf);
   }
+/* Add this to your CSS file */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    border: 2px solid #5cbcf2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.home-button img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.home-button:hover {
+    background-color: #5cbcf2;
+    border-color: #1e1e1e;
+}
+
 body {
     font-family: 'Code'; /* Change font to "Code" */
     background-color: #1e1e1e;
@@ -20,13 +48,30 @@ body {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    text-align: center;
+    text-align: left;
     overflow: hidden;
-    transition: height 0.5s ease;
+    transition: height 0.7s ease-in-out;
 }
 
 .weather-container.open {
     height: 100%;
+}
+.weather-details {
+    transition: opacity 0.7s, height 0.7s ease-in-out;
+}
+
+.weather_item,
+.weather_item div {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+    transition: opacity 0.7s, height 0.7s ease-in-out;
+}
+
+.weather-details.opend .weather_item,
+.weather-details.opend .weather_item div {
+    opacity: 1;
+    height: auto;
 }
 
 .icao-input {

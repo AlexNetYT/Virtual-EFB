@@ -24,27 +24,42 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     function updateWeatherDetails(weatherData) {
-        // Clear existing weather details
         var weatherDetailsContainer = document.querySelector(".weather-details");
         var weatherDetailsContainerId = document.getElementById("weather-details-container");
         weatherDetailsContainer.innerHTML = "";
         weatherDetailsContainer.classList.remove("opend");
         weatherDetailsContainer.classList.add("closed");
-
+    
         // Populate weather details on the page
         for (const [key, value] of Object.entries(weatherData)) {
             var p = document.createElement("p");
+            // var dib = document.createElement("div");
             p.innerHTML = `<strong>${key}:</strong> ${value}`;
             p.classList.add("weather_item");
-            
+            // dib.innerHTML = `<div style="
+            //     width: 100%;
+            //     height: 5px;
+            //     background: #1f1f1f69;
+            //     border-radius: 189px;
+            // "></div>`;
+    
             weatherDetailsContainer.appendChild(p);
-
+            // weatherDetailsContainer.appendChild(dib);
+    
+            // Trigger reflow to apply the initial state before transitioning
+            p.offsetHeight;
+            // dib.offsetHeight;
+    
+            // Apply class to trigger the transition
+            p.classList.add("show");
+            // dib.classList.add("show");
         }
-        var weatherDetailsContainer = document.querySelector(".weather-details");
-        setTimeout(function() {
+    
+        // Trigger the transition after a short delay
+        setTimeout(function () {
             weatherDetailsContainer.classList.remove("closed");
             weatherDetailsContainer.classList.add("opend");
-        }, 1500)
-        
+        }, 1000);
     }
+    
 });

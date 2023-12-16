@@ -1,0 +1,8 @@
+beautifulsoup4>=4.12
+fitz>=0.0.1.dev2
+Flask>=3.0
+metar>=1.11
+Requests>=2.31
+rich>=13.7
+translate>=3.6
+xmltodict>=0.13

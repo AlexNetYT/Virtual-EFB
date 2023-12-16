@@ -1,8 +1,9 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 import socket
-
+import datetime
 host = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
+app.json.sort_keys = False
 static_folder = app.static_folder
 # Your app configuration and any other global setup go here
 
@@ -16,5 +17,12 @@ app.register_blueprint(ofp_bp, url_prefix='/ofp')
 @app.route('/')
 def pdf_viewer_index():
     return render_template('main_page.html')
+@app.route("/get_current_time")
+def get_current_time():
+    return jsonify(datetime.datetime.now().strftime('LT: %Y-%m-%d %H:%M:%S'))
+@app.route("/get_current_time_utc")
+def get_current_time_utc():
+    return jsonify(datetime.datetime.utcnow().strftime('UTC: %Y-%m-%d %H:%M:%S'))
+
 if __name__ == '__main__':
     app.run(debug=True, host=host)

@@ -24,8 +24,10 @@ def get_simbrief_data(user_id):
     except Exception as e:
         print(f"Error: {str(e)}")
         return None
+
 def compile_data(uid):
     dct = get_simbrief_data(uid)
+    wunits = " " + json.loads(dct["OFP"]["api_params"]["acdata_parsed"])["wgtunits"]
     origin = dct["OFP"]["origin"]["icao_code"]
     destination = dct["OFP"]["destination"]["icao_code"]
     acType = dct["OFP"]["aircraft"]["name"]
@@ -40,6 +42,12 @@ def compile_data(uid):
             "fuelPlanOnboard": fix["fuel_plan_onboard"],
             "altitude": fix["altitude_feet"],
         })
+    load_sheet = {'block': dct["OFP"]['fuel']['plan_ramp']+wunits, 
+                  'enroute': dct["OFP"]['fuel']['enroute_burn']+wunits,
+                  'pax': dct["OFP"]['weights']['pax_count'],
+                  'payload': dct["OFP"]['weights']['payload']+wunits,
+                  'zfw': str(round(int(dct["OFP"]['weights']['est_zfw'])/1000, 1))+" T",
+                  'tow': str(round(int(dct["OFP"]['weights']['est_tow'])/1000, 1))+" T"}
     return {
         "simbriefId": simbrief_id,
         "flightLevel": FL,
@@ -47,6 +55,8 @@ def compile_data(uid):
         "destination": destination,
         "aircraftType": acType,
         "flightLevel": FL,
-        "fixes": fixes
+        "wunits": wunits,
+        "fixes": fixes,
+        "loadsheet": load_sheet
         }
     

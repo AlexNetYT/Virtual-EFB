@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='weather_styles.css') }}">
-    <title>Weather Module</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/weather_icon.ico') }}" />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/weather_icon.png') }}" />
+    <title>AeroWeather</title>
 </head>
 <body>
+    <a href="/" class="home-button">
+        <img src="{{ url_for('static', filename='images/home.ico') }}" alt="Home">
+    </a>
     <div class="weather-container">
         <h1>Weather Information</h1>
         <div class="icao-input">

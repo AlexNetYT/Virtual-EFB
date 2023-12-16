@@ -3,6 +3,31 @@
     font-family: Code;
     src: url(code_pro.otf);
   }
+  @keyframes expand {
+    from {
+        max-height: 0;
+        opacity: 0;
+        display: none;
+    }
+    to {
+        max-height: 200px; /* Adjust the value based on your content height */
+        opacity: 1;
+        display: flex;
+    }
+}
+
+@keyframes collapse {
+    from {
+        max-height: 200px; /* Adjust the value based on your content height */
+        opacity: 1;
+        display: flex;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+        display: none;
+    }
+}
 /* Add your styles for the OFP module here */
 ::-webkit-scrollbar {
     width: 12px;
@@ -23,13 +48,81 @@ body {
     color: #f6f4eb;
     margin: 0;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     height: 100vh;
     transition: all 0.5s ease-in-out;
 }
+#animatedDiv {
+    max-width: 965px;
+    transition: all 0.5s ease-in-out;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    /* height: 0px;
+    width: 0px; */
+    opacity: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    max-height: 414px;
+    background-color: #1e1e1e;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    overflow: hidden;
+    max-height: 0px;
+    width: 0px;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.visible-content {
+    max-height: 200px; /* Adjust the value based on your content height */
+        opacity: 1;
+        /* height: auto;
+        width: auto; */
+}
+
+.hidden-content {
+    animation: collapse 0.5s ease-in-out forwards;
+    max-height: 0;
+}
+/* Add this to your CSS file */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    border: 2px solid #5cbcf2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.home-button img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.home-button:hover {
+    background-color: #5cbcf2;
+    border-color: #1e1e1e;
+}
 
 .ofp-container {
+    max-width: 965px;
     transition: all 0.5s ease-in-out;
     background-color: #1e1e1e;
     padding: 20px;
@@ -48,7 +141,6 @@ body {
     -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
     -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
 }
-
 .header-container {
     display: flex;
     align-items: center;
@@ -104,6 +196,20 @@ body {
     overflow-y: auto;
 
 }
+.loadsheet-table-ctr {
+
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    max-height: 414px;
+    overflow: auto;
+
+}
+.loadsheet-table-ctr th{
+    padding-left: 15px;
+    padding-right: 15px;
+}
 table {
     border-collapse: collapse;
     border-spacing: 30px;
@@ -140,13 +246,15 @@ td:last-child {
     align-content: center;
     vertical-align: middle;
     text-align: left;
-    background-color: #1e1e1e;
+    /* background-color: #1e1e1e; */
+    width: 50%;
     transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
     -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
     -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
     -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    transition: width 0.5s cubic-bezier(0.65, 0.38, 0, 0.96), opacity 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
 }
-.lblspan{
+.lblspan {
     vertical-align: middle;
     margin-left: 15px;
     font-family: 'Code';
@@ -155,15 +263,16 @@ td:last-child {
     box-sizing: border-box;
     border: 1px solid #ffb732; /* Yellow-Orange border color */
     border-radius: 5px;
-    width: 0;
-    display: none;
+    width: 50%;
+    /* display: block; */
+    opacity: 1;
     font-size: 16px;
     color: #f6f4eb;
     background-color: #1e1e1e;
-    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
-    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    transition: width 0.5s cubic-bezier(0.65, 0.38, 0, 0.96), height 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    /* -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
     -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
-    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96); */
 }
 .opend-fields {
     width: 50%;
@@ -217,3 +326,31 @@ td:last-child {
 }
 
 /* Add styles for other elements as needed */
+#loadsheetForm {
+    display: none;
+    margin-bottom: 20px;
+    opacity: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.4s ease-in-out;
+}
+.loadsheet-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #FFD700; /* Yellow */
+}
+.loadsheet-form input {
+    font-family: 'Code';
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 16px;
+    color: #F6F4EB;
+    background-color: #333333;
+}

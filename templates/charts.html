@@ -9,12 +9,12 @@
     />
     <link
       rel="icon"
-      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      href="{{ url_for('static', filename='images/charts_icon.ico') }}"
       sizes="any"
     />
     <link
       rel="apple-touch-icon"
-      href="{{ url_for('static', filename='images/favicon.ico') }}"
+      href="{{ url_for('static', filename='images/charts_icon.ico') }}"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -25,10 +25,11 @@
     <title>AeroNav Viewer</title>
   </head>
   <body>
+    
     <div class="welcome-overlay">
       <img
         class="welcome-picture"
-        src="{{ url_for('static', filename='images/favicon.ico') }}"
+        src="{{ url_for('static', filename='images/charts_icon.ico') }}"
       />
       <div class="welcome-text">Welcome to AeroNav Viewer!</div>
     </div>
@@ -38,6 +39,9 @@
       </div>
       <div class="loading-spinner"></div>
     </div>
+    <a href="/" class="home-button">
+      <img src="{{ url_for('static', filename='images/home.ico') }}" alt="Home">
+  </a>
     <div class="container">
       <iframe id="pdf-frame" class="pdf-viewer" src="" frameborder="0">
       </iframe>

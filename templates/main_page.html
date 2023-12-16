@@ -3,14 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='ipad_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='main_style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/favicon.png') }}" />
+    <link rel="favicon" href="{{ url_for('static', filename='images/favicon.ico') }}" />
     <title>EFB Simulator</title>
 </head>
 <head>
-<h5 style="">EFB Simulator</h5>
+
+
 </head>
 <body>
-
+    <div class="header">
+        <h5 id="timeutcDisplay"></h5>
+        <h5 style="">EFB For Simulators</h5>
+        <h5 id="timeDisplay"></h5>
+    </div>
     <div class="app-icon">
         <a href="/pdf_viewer" class="img_butt hover_item">
             <img src="{{ url_for('static', filename='images/charts_icon.png') }}" class="hover_item" alt="Charts Icon" >
@@ -22,10 +30,11 @@
         </a>
         <a href="/ofp" class="img_butt hover_item">
             <img src="{{ url_for('static', filename='images/OFP.png') }}" class="hover_item" alt="Weather Icon" >
-            <div class="img_txt">Flight Information</div>
+            <div class="img_txt">Flight <br>Information</div>
         </a>
         
 </div>
     <!-- Other content or modules can be added here -->
+    <script type="text/javascript",  src="{{ url_for('static', filename='main_script.js') }}"></script>
 </body>
 </html>

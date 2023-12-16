@@ -4,9 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='ofp_styles.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/OFP.ico') }}" />
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/OFP.png') }}" />
     <title>OFP Module</title>
 </head>
 <body>
+    <a href="/" class="home-button">
+        <img src="{{ url_for('static', filename='images/home.ico') }}" alt="Home">
+    </a>
+    <div id="animatedDiv" class="loadsheet-container" >
+        <div class="loadsheet-table-ctr">
+            <table id="loadsheetTable" style=" ">
+                <thead>
+                    <tr>
+                        <th>Block Fuel</th>
+                        <th>Enroute Burn</th>
+                        <th>Pax</th>
+                        <th>Payload</th>
+                        <th>ZFW</th>
+                        <th>TOW</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows of fixes will be dynamically added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="ofp-container">
         <div class="header-container">
             <div id="simbriefIdBlock">
@@ -48,6 +72,7 @@
             </table>
         </div>
     </div>
+    
     <script src="{{ url_for('static', filename='ofp_script.js') }}"></script>
 </body>
 </html>

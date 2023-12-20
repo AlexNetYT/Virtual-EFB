@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var maxCodeInput = document.getElementById("icaoInput");
   var loadPdfBtn = document.getElementById("loadPdfBtn");
   var pdfListContainer = document.getElementById("pdfList");
-  var redownloadPdfBtn = document.getElementById("redownloadPdfBtn");
   var loadingOverlay = document.querySelector(".loading-overlay");
 
   function filterPdfsByTag(tag, icao) {
@@ -16,16 +15,16 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         // Clear existing PDF list
         pdfListContainer.innerHTML = "";
-
+        
         // Populate PDF list with buttons for each PDF file
         data.pdf_files.forEach((pdfFile) => {
           var li = document.createElement("li");
           var button = document.createElement("button");
           button.className = "pdf-button";
-          button.setAttribute("data-pdf", pdfFile);
-          let text = pdfFile;
-          text = text.substring(0, text.length - 6); // Remove the last character
-          button.textContent = text;
+          button.setAttribute("data-pdf", pdfFile["fl"]);
+          //let text = pdfFile;
+          //text = text.substring(0, text.length - 6); // Remove the last character
+          button.textContent = pdfFile["fn"];
           li.appendChild(button);
           pdfListContainer.appendChild(li);
         });
@@ -58,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
         if (data.folder_exists) {
           // Folder exists, start the loading animation
           // loadingOverlay.style.opacity = '0'; // Set opacity to 0 before changing display
-
+          pdfListContainer.innerHTML = "";
           // Continue with other actions (e.g., fetching PDF files)
           fetch("/pdf_viewer/get_pdfs_by_icao/" + icaoInputValue)
             .then((response) => response.json())
@@ -70,10 +69,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 var li = document.createElement("li");
                 var button = document.createElement("button");
                 button.className = "pdf-button";
-                button.setAttribute("data-pdf", pdfFile);
-                let text = pdfFile;
-                text = text.substring(0, text.length - 6); // Remove the last character
-                button.textContent = text;
+                button.setAttribute("data-pdf", pdfFile["fl"]);
+                //let text = pdfFile;
+                //text = text.substring(0, text.length - 6); // Remove the last character
+                button.textContent = pdfFile["fn"];
                 li.appendChild(button);
                 pdfListContainer.appendChild(li);
               });
@@ -151,11 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
       button.addEventListener("click", function () {
         // showLoadingOverlay();
         var pdfFile = button.getAttribute("data-pdf");
-        pdfFrame.src =
-          "/static/pdf_downloads/" +
-          maxCodeInput.value.trim().toUpperCase() +
-          "/" +
-          pdfFile;
+        pdfFrame.src = pdfFile;
       });
       var menuButtons = document.querySelectorAll(".menu-button");
       // menuButtons.forEach(function(button) {
@@ -182,11 +177,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Add event listener for the Load PDF button
   loadPdfBtn.addEventListener("click", function () {
-    if (maxCodeInput.value.length === 4) {
-      showLoadingOverlay(); // Call the showLoadingOverlay function here
-    }
-  });
-  redownloadPdfBtn.addEventListener("click", function () {
     if (maxCodeInput.value.length === 4) {
       showLoadingOverlay(); // Call the showLoadingOverlay function here
     }

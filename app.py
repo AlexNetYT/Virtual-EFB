@@ -25,4 +25,4 @@ def get_current_time_utc():
     return jsonify(datetime.datetime.utcnow().strftime('UTC: %Y-%m-%d %H:%M:%S'))
 
 if __name__ == '__main__':
-    app.run(debug=True, host=host)
+    app.run(debug=True, host=host, port="7325")

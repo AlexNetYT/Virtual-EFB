@@ -1,0 +1,479 @@
+/* Add your styles for the OFP module here */
+@font-face {
+    font-family: Code;
+    src: url(code_pro.otf);
+  }
+  @keyframes expand {
+    from {
+        max-height: 0;
+        opacity: 0;
+        display: none;
+    }
+    to {
+        max-height: 200px; /* Adjust the value based on your content height */
+        opacity: 1;
+        display: flex;
+    }
+}
+
+@keyframes collapse {
+    from {
+        max-height: 200px; /* Adjust the value based on your content height */
+        opacity: 1;
+        display: flex;
+    }
+    to {
+        max-height: 0;
+        opacity: 0;
+        display: none;
+    }
+}
+@keyframes sbgood {
+    0% {
+         /* Adjust the value based on your content height */
+         background-color:#ffb732;
+         border: 1px solid #ffb732;
+    }
+    50% {
+        background-color:#36ff32;
+         border: 1px solid #36ff32;
+
+    }
+    100% {
+        background-color:#ffb732;
+        border: 1px solid #ffb732;
+    }
+}
+@keyframes sbbd {
+    0% {
+         /* Adjust the value based on your content height */
+         background-color:#ffb732;
+         border: 1px solid #ffb732;
+    }
+    50% {
+        background-color:#ff3232;
+         border: 1px solid #ff3232;
+
+    }
+    100% {
+        background-color:#ffb732;
+        border: 1px solid #ffb732;
+    }
+}
+/* Add your styles for the OFP module here */
+::-webkit-scrollbar {
+    width: 12px;
+}
+                    
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    border-radius: 10px;
+}
+                    
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+body {
+    font-family: 'Code', monospace;
+    background-color: #1e1e1e;
+    color: #f6f4eb;
+    margin: 0;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
+}
+#animatedDiv {
+    max-width: 965px;
+    transition: all 0.5s ease-in-out;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    /* height: 0px;
+    width: 0px; */
+    opacity: 0;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    max-height: 414px;
+    background-color: #1e1e1e;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    overflow: hidden;
+    max-height: 0px;
+    width: 0px;
+    transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    margin-bottom: 3%;
+}
+.left-side {
+    padding-right: 0%;
+ /* will be padding-right: 5%; */
+}
+
+#map {
+    height: 500px;
+    width: 90%;
+    min-width: 400px;
+    min-height: 400px;
+    border-radius: 13px;
+    border: none;
+}
+.right-side {
+    opacity: 0;
+    /* visibility: hidden; */
+    width: 0px;
+    transition: all 0.7s ease-in-out;
+    margin-top: -2%;
+    
+}
+.visible-content {
+     /*max-height: 200px; Adjust the value based on your content height */
+        opacity: 1;
+        /* height: auto;
+        width: auto; */
+}
+
+.hidden-content {
+    animation: collapse 0.5s ease-in-out forwards;
+    max-height: 0;
+}
+/* Add this to your CSS file */
+.home-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #1e1e1e;
+    border: 2px solid #5cbcf2;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.home-button img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+.home-button:hover {
+    background-color: #5cbcf2;
+    border-color: #1e1e1e;
+}
+
+.ofp-container {
+    max-width: 965px;
+    transition: all 0.5s ease-in-out;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    max-height: 414px;
+    background-color: #1e1e1e;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+.map-cont {
+    transition: all 0.5s ease-in-out;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #1e1e1e;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+.buttons-mc{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 8%;
+    padding: 10px;
+}
+.cont_but{
+    width: 100%;
+    height: 35px;
+    margin-left: 5%;
+    margin-right: 5%;
+    border: 0px solid #ffb732;
+    border-radius: 10px;
+    background-color: #333333;
+    font-family: 'Code';
+    font-size: 14px;
+    color: #fff;
+    cursor: pointer;
+    /* box-shadow: inset 5px 7px 12px 1px #1f1f1f; */
+    box-shadow: 4px 4px 12px 0px #ffb732;
+    transition: all 0.4s ease-in-out;
+}
+.cont_but:hover {
+    box-shadow: 0px 0px 12px 0px #ffb732;
+}
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+    flex-direction: column;
+    max-height: 414px;
+}
+#routeBlock {
+
+    display: flex;
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;
+}
+
+#originBlock,
+#destBlock,
+#aircraftLoadsheetBlock {
+    display: flex;
+    justify-content: center;
+    height: 20%;
+    align-items: center;
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 12px;
+    width: 100%;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;
+}
+#simbriefIdBlock {
+    display: flex;
+    height: 20%;
+    align-items: center;
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    width: 100%;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;   
+
+}
+.table-container {
+
+    background-color: #333333;
+    padding: 15px;
+
+    border-radius: 20px;
+    margin-left: 35px;
+    margin-top: -10px;
+    box-sizing: border-box;
+    max-height: 360px;
+    overflow-y: auto;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;
+}
+.loadsheet-table-ctr {
+
+    background-color: #333333;
+    padding: 15px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    max-height: 414px;
+    overflow: auto;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;
+}
+.loadsheet-second {
+
+    background-color: #333333;
+    border-radius: 20px;
+    box-sizing: border-box;
+    max-height: 414px;
+    overflow: auto;
+    box-shadow: 2px 3px 17px 0px #0f0f0f;
+    width: 33%;
+    height: 100%;
+    margin-left: 33px;
+}
+#otherTable {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 30px;
+}
+.loadsheet-table-ctr th, #otherTable th{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 30px;
+}
+thead tr, #otherTable tr{
+    color: #ffb732;
+}
+th {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+td{
+    padding: 10px;
+    /* border: 3px #ffb732 solid; */
+    /* background-color: #303030; */
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+}
+tr {
+    padding-top: 10px;
+}
+/* td:first-child {
+    border-left-style: solid;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+}
+td:last-child {
+    border-right-style: solid;
+    border-bottom-right-radius: 10px; 
+    border-top-right-radius: 10px; 
+} */
+.lblFor{
+    font-size:19px;
+    align-content: center;
+    vertical-align: middle;
+    text-align: left;
+    /* background-color: #1e1e1e; */
+    width: 50%;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    transition: width 0.5s cubic-bezier(0.65, 0.38, 0, 0.96), opacity 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+.lblspan {
+    vertical-align: middle;
+    margin-left: 15px;
+    font-family: 'Code';
+    outline: none;
+    text-align: center;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffb732; /* Yellow-Orange border color */
+    border-radius: 5px;
+    width: 50%;
+    /* display: block; */
+    opacity: 1;
+    font-size: 16px;
+    color: #f6f4eb;
+    background-color: #1e1e1e;
+    transition: width 0.5s cubic-bezier(0.65, 0.38, 0, 0.96), height 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    /* -webkit-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -moz-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+    -o-transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96); */
+}
+.opend-fields {
+    width: 50%;
+    opacity: 1;
+    display: block;
+}
+#simbriefId {
+    margin-left: 15px;
+    font-family: 'Code';
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ffb732; /* Yellow-Orange border color */
+    border-radius: 5px;
+    width: 80%;
+    font-size: 16px;
+    color: #f6f4eb;
+    background-color: #1e1e1e;
+    transition: all 0.5s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+.animat-sbgd {
+    animation: sbgood 1.5s ease-in-out alternate;
+}
+.animat-sbbd {
+    animation: sbbd 1.5s ease-in-out alternate;
+}
+#loadOFPBtn,
+#simbriefLoad {
+    font-family: 'Code';
+    padding: 10px;
+    border: 1px solid #ffb732; /* Yellow-Orange border color */
+    background-color: #ffb732; /* Yellow-Orange background color */
+    color: #1e1e1e;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+#loadLoadsheetBtn {
+    font-family: 'Code';
+    padding: 10px;
+    border: 1px solid #ffb732; /* Yellow-Orange border color */
+    background-color: #ffb732; /* Yellow-Orange background color */
+    color: #1e1e1e;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+    transition: all 0.3s cubic-bezier(0.65, 0.38, 0, 0.96);
+}
+#loadOFPBtn:hover,
+#simbriefLoad:hover,
+#loadLoadsheetBtn:hover {
+    background-color: #ffcc66; /* Lighter shade on hover */
+    border-color: #e59400; /* Darker shade on hover */
+    box-shadow: 0 0 7px #ffb732b8; /* Yellow-Orange box shadow on hover */
+}
+
+/* Add styles for other elements as needed */
+#loadsheetForm {
+    display: none;
+    margin-bottom: 20px;
+    opacity: 0;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transition: opacity 0.4s ease-in-out;
+}
+.loadsheet-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #FFD700; /* Yellow */
+}
+.loadsheet-form input {
+    font-family: 'Code';
+    outline: none;
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #FFD700;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 100%;
+    font-size: 16px;
+    color: #F6F4EB;
+    background-color: #333333;
+}

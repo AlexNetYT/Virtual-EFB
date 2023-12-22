@@ -1,0 +1,57 @@
+@font-face {
+    font-family: Code;
+    src: url(code_pro.otf);
+  }
+body {
+    background-color: #1e1e1e;
+    margin: 0;
+    padding: 0;
+    font-family: "Code";
+    margin-top: -1%;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    height: 30px;
+}
+.app-icon {
+    display: flex;
+    padding: 0.5%;
+    text-decoration: none;
+    text-align: center;
+    justify-content: center;
+
+}
+.container {
+    display: flex;
+    align-items: flex-start;
+}
+.img_butt{
+    padding: 5%;
+    text-decoration: none;
+    transition: all     0.4s ease-in-out;
+}
+.img_txt{
+    /* transition: all     0.4s ease-in-out; */
+    border: 0;
+    font-size: 20px;
+    color:beige;
+    text-decoration: none;
+}
+/* .app-icon a :hover {
+    border-color: #ecd108; /* Green border color on focus 
+    box-shadow: 0 0 9px rgba(228, 189, 15, 0.641); /* Green box shadow on focus 
+} */
+.app-icon img {
+    transition: all     0.4s ease-in-out;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+}
+.header h5 {
+    text-align: center;
+    color: #fff;
+    font-size: 16px;
+    padding-left: 20px;
+    padding-right: 20px;
+}

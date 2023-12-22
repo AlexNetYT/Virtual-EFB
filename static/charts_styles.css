@@ -1,0 +1,299 @@
+@font-face {
+  font-family: Code;
+  src: url(code_pro.otf);
+}
+body {
+  margin: 0;
+  /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+  font-family: "Code";
+  overflow: hidden; /* Prevent scrolling for the entire page */
+  background-color: #1e1e1e; /* Dark background for dark mode */
+  color: #cccccc; /* Light gray text color */
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.pdf-viewer {
+  display: none;
+  width: 0px;
+  transition: all 0.7 ease-in-out;
+  flex: 1;
+  height: 100%;
+  border-radius: 30px 0px 0px 30px;
+  background-color: #1e1e1e; /* Dark background for the PDF viewer */
+}
+.pdf-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#loadPdfBtn {
+  font-family: "Code";
+  margin: 10px;
+  width: 50%;
+  border: none;
+  background-color: #4caf50; /* Green button color for loading PDF */
+  color: #1e1e1e; /* Dark background color */
+  border-radius: 5px;
+  cursor: pointer;
+  /* transition: background-color 0.3s; */
+  transition: all 0.4s ease-in-out;
+}
+
+#loadPdfBtn:hover {
+  width: 75%;
+  background-color: #76ba6a; /* Light green on hover */
+}
+
+#redownloadPdfBtn {
+  font-family: "Durer";
+  margin: 10px;
+  border: none;
+  background-color: #4caf50; /* Green button color for loading PDF */
+  color: #1e1e1e; /* Dark background color */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+#redownloadPdfBtn:hover {
+  background-color: #76ba6a; /* Light green on hover */
+}
+#icaoInput {
+  font-family: "Code";
+  margin: 10px;
+  border: none;
+  background-color: #282828; /* Dark background for input */
+  color: #cccccc; /* Light gray text color */
+  border-radius: 5px;
+  transition: all 0.3s;
+}
+
+#icaoInput:hover {
+  outline: none;
+  border-color: #4caf50; /* Green border color on focus */
+  box-shadow: 0 0 7px rgba(76, 175, 80, 0.5); /* Green box shadow on focus */
+}
+#icaoInput:focus {
+  outline: none;
+  border-color: #4caf50; /* Green border color on focus */
+  box-shadow: 0 0 7px rgba(76, 175, 80, 0.5); /* Green box shadow on focus */
+}
+#pdfList {
+  padding: 0px;
+  transition: all 0.4s ease-in-out;
+}
+
+#header {
+  text-align: center;
+  font-size: 25px;
+  color: #4caf50; /* Green header color */
+}
+
+.pdf-list {
+  width: 100%;
+  transition: all 0.7 ease-in-out;
+  margin-bottom: 10px;
+  /* width: 400px; */
+  height: 100%;
+  background-color: #333333; /* Dark background for sidebar */
+  padding: 20px;
+  overflow: hidden;
+  color: #76ba6a; /* Light green text color */
+}
+#pdfList {
+  overflow-y: auto;
+}
+#pdfList::-webkit-scrollbar {
+  border-radius: 20px;
+}
+.pdf-list h1 {
+  font-size: 1.2em;
+  color: #4caf50; /* Green heading color */
+}
+
+.pdf-list div {
+  margin-bottom: 10px;
+}
+.pdf-list li {
+  padding: 10px;
+}
+.pdf-list label {
+  display: block;
+  margin-bottom: 5px;
+}
+li {
+  list-style-type: none;
+}
+
+.pdf-list input {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #cccccc; /* Light gray border color */
+  border-radius: 5px;
+  margin-bottom: 10px;
+  transition: border-color 0.3s;
+}
+
+.pdf-list input:focus {
+  outline: none;
+  border-color: #4caf50; /* Green border color on focus */
+}
+
+.pdf-list button {
+  font-family: "Code";
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  border: none;
+  background-color: #4caf50; /* Green button color */
+  color: #1e1e1e; /* Dark background color */
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.pdf-list button:hover {
+  background-color: #83d075; /* Light green on hover */
+  box-shadow: 0 0 8px rgba(127, 253, 131, 0.793); /* Green box shadow on focus */
+  /* font-weight: bolder;     */
+}
+
+.menu-bar {
+  display: flex;
+  overflow-x: auto;
+  padding: 7px; /* Adjust padding as needed */
+  background-color: #2b2b2b; /* Dark background color for the menu bar */
+  border-radius: 12px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.menu-bar.show {
+  opacity: 1; /* Show with fade-in effect when the 'show' class is present */
+}
+
+.menu-button {
+  font-family: "Code";
+  margin: 5px;
+  padding: 10px;
+  border: none;
+  background-color: #4caf50; /* Green button color for menu button */
+  color: #1e1e1e; /* Dark background color */
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+/* ... your existing styles ... */
+
+.loading-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(34, 30, 34, 0.8); /* #221E22 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+}
+
+.loading-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #e0d2c3; /* Text color */
+  transition: opacity 0.2s ease-in-out;
+  -webkit-transition: opacity 0.2s ease-in-out;
+  -moz-transition: opacity 0.2s ease-in-out;
+  -o-transition: opacity 0.2s ease-in-out;
+  -ms-transition: opacity 0.2s ease-in-out;
+}
+
+.loading-spinner {
+  border: 8px solid #44355b; /* Border color */
+  border-top: 8px solid #35ce8d; /* Spinner color */
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.welcome-overlay {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(34, 30, 34); /* #221E22 */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 999;
+  transition: opacity 0.7s linear;
+  -webkit-transition: opacity 0.7s linear;
+  -moz-transition: opacity 0.7s linear;
+  -o-transition: opacity 0.7s linear;
+  -ms-transition: opacity 0.7s linear;
+}
+
+.welcome-text {
+  padding-top: 20px;
+  font-size: 36px;
+  margin-bottom: 10px;
+  color: #e0d2c3; /* Text color */
+  transition: opacity 0.7s linear;
+  -webkit-transition: opacity 0.7s linear;
+  -moz-transition: opacity 0.7s linear;
+  -o-transition: opacity 0.7s linear;
+  -ms-transition: opacity 0.7s linear;
+}
+/* Add this to your CSS file */
+.home-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1e1e1e;
+  border: 2px solid #5cbcf2;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.home-button img {
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+}
+
+.home-button:hover {
+  background-color: #5cbcf2;
+  border-color: #1e1e1e;
+}

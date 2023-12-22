@@ -48,7 +48,7 @@ def compile_data(uid):
             "altitude": fix["altitude_feet"],
         })
     map = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][0]['link']}"
-    vp = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][6]['link']}"
+    vp = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][-1]['link']}"
     pdf = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['files']['pdf']['link']}"
     BlockTime_int = int(dct['OFP']['times']['est_block'])
     BlockTime = "Block Time: "+":".join(str(datetime.timedelta(seconds=BlockTime_int)).split(':')[:2])

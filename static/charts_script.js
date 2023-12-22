@@ -8,6 +8,17 @@ document.addEventListener("DOMContentLoaded", function () {
   var pdfListContainer = document.getElementById("pdfList");
   var loadingOverlay = document.querySelector(".loading-overlay");
 
+  // Execute a function when the user presses a key on the keyboard
+  maxCodeInput.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+      // Cancel the default action, if needed
+      event.preventDefault();
+      // Trigger the button element with a click
+      loadPdfBtn.click();
+    }
+  });
+
   function filterPdfsByTag(tag, icao) {
     // Fetch the PDF files for the specified tag from the server
     fetch("/pdf_viewer/get_pdfs_by_tag/" + tag + "/" + icao)

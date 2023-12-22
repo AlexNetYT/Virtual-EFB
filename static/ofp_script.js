@@ -6,7 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var bt = document.getElementById("blocktime");
     var fixesTableBody = document.querySelector("#fixTable tbody");
     var loadTableBody = document.querySelector("#loadsheetTable tbody");
-
+    simbriefIdInput.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          loadOFPBtn.click();
+        }
+      });
     loadOFPBtn.addEventListener("click", function () {
         // Mock API call to fetch OFP data based on SimBrief ID
         var simbriefId = simbriefIdInput.value.trim();

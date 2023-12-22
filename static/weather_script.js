@@ -2,7 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var loadWeatherBtn = document.getElementById("loadWeatherBtn");
     var icaoCodeInput = document.getElementById("icaoCode");
     var weatherDetailsContainer = document.querySelector(".weather-details");
-
+    icaoCodeInput.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          loadWeatherBtn.click();
+        }
+      });
     loadWeatherBtn.addEventListener("click", function () {
         var icaoCode = icaoCodeInput.value.trim().toUpperCase();
 

@@ -1,4 +1,4 @@
-import requests
+import httpx
 import json, xmltodict
 import datetime
 def get_simbrief_data(user_id):
@@ -6,7 +6,7 @@ def get_simbrief_data(user_id):
     api_url = f'https://www.simbrief.com/api/xml.fetcher.php?userid={user_id}'
     print(api_url)
     try:
-        response = requests.get(api_url)
+        response = httpx.get(api_url)
         print(response)
         if response.status_code == 200:
             o = xmltodict.parse(response.text) 
@@ -18,8 +18,6 @@ def get_simbrief_data(user_id):
                 del simbrief_out["OFP"]["destination"]["notam"]
                 del simbrief_out["OFP"]["alternate"]["notam"]
                 del simbrief_out["OFP"]["notams"]
-                with open("simbrief.txt", "w") as f:
-                    f.write(json.dumps(simbrief_out))
                 return simbrief_out
             else:
                 return None

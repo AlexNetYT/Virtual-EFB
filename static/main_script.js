@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get the element where you want to display the time
     var timeDisplay = document.getElementById("timeDisplay");
     var timeDisplay_utc = document.getElementById("timeutcDisplay");
+    var welcomeOverlay = document.querySelector(".welcome-overlay");
     // Function to update the time
     async function updateTime() {
         try {
@@ -20,7 +21,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Initial call to set the time immediately
     updateTime();
-
+    setTimeout(function () {
+        welcomeOverlay.style.opacity = "0";
+      }, 900);
+      setTimeout(function () {
+        welcomeOverlay.style.display = "none"; // Change display to flex
+      }, 2700);
+      // ... your existing code ...
     // Set up an interval to update the time every minute
     setInterval(updateTime, 1000); // 60000 milliseconds = 1 minute
 });

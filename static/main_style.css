@@ -9,6 +9,37 @@ body {
     font-family: "Code";
     margin-top: -1%;
 }
+.welcome-overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(34, 30, 34); /* #221E22 */
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 999;
+    transition: opacity 0.7s linear;
+    -webkit-transition: opacity 0.7s linear;
+    -moz-transition: opacity 0.7s linear;
+    -o-transition: opacity 0.7s linear;
+    -ms-transition: opacity 0.7s linear;
+  }
+  
+  .welcome-text {
+    padding-top: 20px;
+    font-size: 36px;
+    margin-bottom: 10px;
+    color: #e0d2c3; /* Text color */
+    transition: opacity 0.7s linear;
+    -webkit-transition: opacity 0.7s linear;
+    -moz-transition: opacity 0.7s linear;
+    -o-transition: opacity 0.7s linear;
+    -ms-transition: opacity 0.7s linear;
+  }
 .header {
     display: flex;
     justify-content: center;

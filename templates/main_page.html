@@ -14,9 +14,16 @@
 
 </head>
 <body>
+    <div class="welcome-overlay">
+        <img
+          class="welcome-picture"
+          src="{{ url_for('static', filename='images/favicon.ico') }}"
+        />
+        <div class="welcome-text">Welcome to AeroNav EFB!</div>
+    </div>
     <div class="header">
         <h5 id="timeutcDisplay"></h5>
-        <h5 style="">EFB For Simulators</h5>
+        <h5>EFB For Simulators</h5>
         <h5 id="timeDisplay"></h5>
     </div>
     <div class="app-icon">

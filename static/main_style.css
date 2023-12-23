@@ -2,6 +2,13 @@
     font-family: Code;
     src: url(code_pro.otf);
   }
+
+@media (max-width : 550px) {
+    .app-icon {
+
+        flex-direction: column;
+    }
+}
 body {
     background-color: #1e1e1e;
     margin: 0;
@@ -43,7 +50,7 @@ body {
 .header {
     display: flex;
     justify-content: center;
-    height: 30px;
+
 }
 .app-icon {
     display: flex;
@@ -58,7 +65,7 @@ body {
     align-items: flex-start;
 }
 .img_butt{
-    padding: 5%;
+    margin: 5%;
     text-decoration: none;
     transition: all     0.4s ease-in-out;
 }

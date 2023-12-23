@@ -3,3 +3,5 @@ __pycache__/
 modules/pdf_viewer/__pycache__/
 modules/weather/__pycache__/
 .release/
+version.txt
+*.exe

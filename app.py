@@ -2,9 +2,14 @@ from flask import Flask, render_template, jsonify
 import socket
 import datetime
 import rich
+import webbrowser
 import os, sys
 from gevent.pywsgi import WSGIServer
 import atexit
+import threading
+from pystray import MenuItem as item
+import pystray
+from PIL import Image
 def exit_handler():
     print("Code to run before exiting")
     os.system(f"""start cmd /c Updater.exe {update_data[0].replace('"', '')} {update_data[1].replace('"', '')}""")  
@@ -51,9 +56,27 @@ def get_current_time():
 @app.route("/get_current_time_utc")
 def get_current_time_utc():
     return jsonify(datetime.datetime.utcnow().strftime('UTC: %Y-%m-%d %H:%M:%S'))
-
-if __name__ == '__main__':
+global http_server
+def create_webview():
+    webbrowser.open(f'http://{host}:{port}')
+def run_server():
     http_server = WSGIServer((host, port), app, log=None)
-    rich.print(f"[bold]App is running on [italic]http://{host}:{port}[/italic][/bold]")
     http_server.serve_forever()
-http_server.stop()
+def stop_server(icon):
+    
+    os._exit(1)
+    
+
+def create_tray_icon():
+    image = Image.open("./static/images/favicon.ico")  # Replace with the path to your icon image
+    menu = (item('🌐Open EFB', create_webview),item('🛑Stop Server', stop_server))
+
+    icon = pystray.Icon("AeroNav EFB", image, "AeroNav EFB", menu)
+    return icon
+if __name__ == '__main__':
+    flask_thread = threading.Thread(target=run_server)
+
+    tray_icon = create_tray_icon()
+    flask_thread.start()
+    webbrowser.open(f'http://{host}:{port}')
+    tray_icon.run()

@@ -13,26 +13,24 @@ from PIL import Image
 def exit_handler():
     print("Code to run before exiting")
     os.system(f"""start cmd /c Updater.exe {update_data[0].replace('"', '')} {update_data[1].replace('"', '')}""")  
-
+Log_flag = True
 port = 7325
 host = socket.gethostbyname(socket.gethostname())
 app = Flask(__name__)
-import logging
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
-app.logger.disabled = True
-log.disabled = True
+if Log_flag:
+    import logging
+    log = logging.getLogger('werkzeug')
+    log.setLevel(logging.ERROR)
+    app.logger.disabled = True
+    log.disabled = True
 app.json.sort_keys = False
 static_folder = app.static_folder
 # Your app configuration and any other global setup go here
 import modules.autoupdate.module
 update_data = modules.autoupdate.module.check_for_updates("AlexNetYT", "EFB-new")
 if update_data is not None:
-    
     if os.path.exists("Updater.exe"):
         atexit.register(exit_handler)
-
-        
         sys.exit(0)
     else:
         rich.print(":bangbang: [bold]App [red]can not[/red] find [italic]Updater.exe[/italic] [/bold]:bangbang:")
@@ -47,6 +45,8 @@ from modules.weather.views import weather_blueprint
 app.register_blueprint(weather_blueprint, url_prefix='/weather')
 from modules.ofp.views import ofp_bp
 app.register_blueprint(ofp_bp, url_prefix='/ofp')
+from modules.canvas.views import canvas_blueprint
+app.register_blueprint(canvas_blueprint, url_prefix='/canvas')
 @app.route('/')
 def pdf_viewer_index():
     return render_template('main_page.html')
@@ -60,7 +60,7 @@ global http_server
 def create_webview():
     webbrowser.open(f'http://{host}:{port}')
 def run_server():
-    http_server = WSGIServer((host, port), app, log=None)
+    http_server = WSGIServer((host, port), app)
     http_server.serve_forever()
 def stop_server(icon):
     

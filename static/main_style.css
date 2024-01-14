@@ -2,6 +2,10 @@
     font-family: Code;
     src: url(code_pro.otf);
   }
+@font-face {
+    font-family: Druer;
+    src: url(druer.otf);
+  }
 
 @media (max-width : 550px) {
     .app-icon {
@@ -52,6 +56,41 @@ body {
     justify-content: center;
 
 }
+.footer{ 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 1%;
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+    z-index: 10;
+    width: 98%;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer_item{
+    max-height: 30px;
+}
+.footer-block {
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    display:block;
+    min-width: 1%;
+    width: auto;
+    font-size: calc(1vw + 1vh);
+    text-align: center;
+    text-decoration: none;
+    padding: 1%;
+    white-space: nowrap;
+    cursor:pointer;
+    background: #282828;
+    border-radius: 20px;
+    box-shadow: 0px 0px 20px 15px rgba(0, 0, 0, 0.25);
+}
+
 .app-icon {
     display: flex;
     padding: 0.5%;

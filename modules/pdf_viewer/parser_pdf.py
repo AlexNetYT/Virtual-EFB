@@ -12,7 +12,7 @@ import re
 def download_pdfs(icao, download_folder_old, save: bool = False):
     icao = icao.lower()
     url = f"http://www.caiga.ru/common/AirInter/validaip/aip/ad/ad2/{icao}/"
-    download_folder = str(download_folder_old) + f"\{icao.upper()}"
+    download_folder = str(download_folder_old) + fr"\{icao.upper()}"
     # os.rmdir(download_folder)
     if not save:
         try:

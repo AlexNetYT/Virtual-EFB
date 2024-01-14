@@ -39,9 +39,25 @@
             <img src="{{ url_for('static', filename='images/OFP.png') }}" class="hover_item" alt="Weather Icon" >
             <div class="img_txt">Flight <br>Information</div>
         </a>
+        <a href="/canvas" class="img_butt hover_item">
+            <img src="{{ url_for('static', filename='images/Canvas.png') }}" class="hover_item" alt="Weather Icon" >
+            <div class="img_txt">Scrath Pad</div>
+        </a>
         
+</div>
+<div class="footer">
+    <div class="footer-block" onclick="location.href='https://github.com/AlexNetYT/'">
+            My GitHub
+    </div>
+    <div class="footer-block" onclick="location.href='https://github.com/AlexNetYT/'">
+            Caucasus FIR Discord
+    </div>
+    <div class="footer-block" >
+        Designed and developed by AlexNet
+    </div>
 </div>
     <!-- Other content or modules can be added here -->
     <script type="text/javascript",  src="{{ url_for('static', filename='main_script.js') }}"></script>
 </body>
+
 </html>

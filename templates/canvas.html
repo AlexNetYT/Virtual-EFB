@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas Drawing</title>
+    {% comment %} <link rel="stylesheet" href="{{ url_for('static', filename='canvas_styles.css') }}"> {% endcomment %}
+</head>
+<body>
+    <canvas id="drawingCanvas" width="80%" height="60%"></canvas>
+    <div class="canvas-container">
+        
+        <div class="buttons-container">
+            <button onclick="usePencil()">Pencil</button>
+            <button onclick="useEraser()">Eraser</button>
+            <button onclick="clearCanvas()">Clear All</button>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='canvas_script.js') }}"></script>
+</body>
+</html>

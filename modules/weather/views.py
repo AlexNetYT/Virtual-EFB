@@ -12,3 +12,7 @@ def get_weather_info(icao_code):
     weather_data = metar_decoder.decode_metar(icao_code)
 
     return jsonify(weather_data)
+@weather_blueprint.route('/?=<ICAO>')
+def render_with_weather(ICAO):
+    print(ICAO)
+    return render_template('weather.html')

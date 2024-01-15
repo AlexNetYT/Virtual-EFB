@@ -52,10 +52,10 @@ def pdf_viewer_index():
     return render_template('main_page.html')
 @app.route("/get_current_time")
 def get_current_time():
-    return jsonify(datetime.datetime.now().strftime('LT: %Y-%m-%d %H:%M:%S'))
+    return jsonify(datetime.datetime.now().strftime('LT: %H:%M:%S'))
 @app.route("/get_current_time_utc")
 def get_current_time_utc():
-    return jsonify(datetime.datetime.utcnow().strftime('UTC: %Y-%m-%d %H:%M:%S'))
+    return jsonify(datetime.datetime.utcnow().strftime('UTC: %H:%M:%S'))
 global http_server
 def create_webview():
     webbrowser.open(f'http://{host}:{port}')

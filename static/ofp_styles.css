@@ -19,9 +19,9 @@
   .map-block {
     width: 60%;
   }
-  .main-block {
+  /* .main-block {
     max-width: 60vw;
-  }
+  } */
 }
 
 .opened {
@@ -85,7 +85,7 @@ body {
     justify-content: center;
     align-self: stretch;
     flex: 1;
-    max-width: 50vw;
+    /* max-width: 50vw; */
     /* position: relative; */
   }
   .second-info-block {
@@ -279,7 +279,7 @@ body {
     text-align: center;
     font-family: 'Code';
     /* position: relative; */
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
   }
 
 .simbrief-id-input:hover {
@@ -298,6 +298,7 @@ body {
     position: static;
   }
   .loadbutton {
+    font-family: "Code";
     height: 100%;
     width: 100%;
     background: #ffb732;
@@ -307,7 +308,7 @@ body {
     border-width: 1px;
     /* width: 177.25px;
     height: 71.11px; */
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease-in-out;
     /*     position: absolute; */
     /* left: 207.25px;
     top: 17px; */
@@ -504,54 +505,17 @@ body {
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    /* position: relative; */
-  }
-  .route-button {
-    flex-shrink: 0;
-    /* width: 194px;
-    height: 35px; */
-        /* position: absolute; */
-    left: calc(50% - 218px);
-    top: calc(50% - 17.5px);
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.25);
-  }
-  .rectangle {
+    width: 80%;
+    height: 4svh;
+    font-size: 17px;
     background: #333333;
-    border-radius: 10px;
-        /* position: absolute; */
-    right: 0%;
-    left: 0%;
-    width: 100%;
-    bottom: 0%;
-    top: 0%;
-    height: 100%;
-    box-shadow: 0px 0px 12px 0px rgba(255, 183, 50, 1);
+    border-radius: 16px;
+    box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4);
   }
-  .vertical-profile {
-    color: #ffffff;
-    text-align: center;
-    font-family: "Code";
-    font-size: 14px;
-    font-weight: 400;
-        /* position: absolute; */
-    right: 18.56%;
-    left: 18.04%;
-    width: 63.4%;
-    bottom: 25.71%;
-    top: 28.57%;
-    height: 45.71%;
-  }
-  .vertical-profile-button {
-    flex-shrink: 0;
-    /* width: 194px;
-    height: 35px; */
-        /* position: absolute; */
-    left: calc(50% - -24px);
-    top: calc(50% - 17.5px);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  }
+
 .loadbutton:hover {
     background-color: #ffcc66; /* Lighter shade on hover */
     border-color: #e59400; /* Darker shade on hover */
     box-shadow: 0 0 7px #ffb732b8; /* Yellow-Orange box shadow on hover */
+    transition: all 0.3s ease-in-out;
 }

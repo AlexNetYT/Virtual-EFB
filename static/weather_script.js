@@ -21,7 +21,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => response.json())
                 .then(data => {
                     // Update the weather details on the page
-                    updateWeatherDetails(data);
+                    document.getElementById("metar-text").innerHTML = data['metar-text'];
+                    const result = Object.fromEntries(Object.entries(data).slice(1));  
+                    updateWeatherDetails(result);
                 })
                 .catch(error => {
                     console.error("Error fetching weather information:", error);
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         weatherDetailsContainer.innerHTML = "";
         weatherDetailsContainer.classList.remove("opend");
         weatherDetailsContainer.classList.add("closed");
-    
+        
         // Populate weather details on the page
         for (const [key, value] of Object.entries(weatherData)) {
             var p = document.createElement("p");

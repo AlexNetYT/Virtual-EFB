@@ -1,47 +1,66 @@
+const container = document.querySelector('.container');
 const canvas = document.getElementById('drawingCanvas');
 const context = canvas.getContext('2d');
 let isDrawing = false;
-let isErasing = false;
+let tool = 'pencil';
+
+function resizeCanvas() {
+  canvas.width = container.clientWidth;
+  canvas.height = container.clientHeight;
+}
 
 function usePencil() {
-    isErasing = false;
-    context.strokeStyle = '#5cbcf2'; // Pencil color
+  tool = 'pencil';
 }
 
 function useEraser() {
-    isErasing = true;
-    context.strokeStyle = '#1e1e1e'; // Eraser color (dark background)
+  tool = 'eraser';
 }
 
 function clearCanvas() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+  context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 function startDrawing(e) {
-    isDrawing = true;
-    draw(e);
-}
-
-function stopDrawing() {
-    isDrawing = false;
-    context.beginPath();
+  isDrawing = true;
+  draw(e);
 }
 
 function draw(e) {
-    if (!isDrawing) return;
+  if (!isDrawing) return;
 
-    const x = e.clientX - canvas.offsetLeft;
-    const y = e.clientY - canvas.offsetTop;
+  const rect = canvas.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
 
-    context.lineWidth = isErasing ? 20 : 2; // Adjust line width for eraser
+  if (tool === 'pencil') {
+    context.lineWidth = 3;
     context.lineCap = 'round';
+    context.strokeStyle = '#fff';
+  } else if (tool === 'eraser') {
+    context.lineWidth = 10;
+    context.lineCap = 'round';
+    context.strokeStyle = '#333';
+  }
 
-    context.lineTo(x, y);
-    context.stroke();
-    context.beginPath();
-    context.moveTo(x, y);
+  context.lineTo(x, y);
+  context.stroke();
+  context.beginPath();
+  context.moveTo(x, y);
 }
 
+function stopDrawing() {
+  isDrawing = false;
+  context.beginPath();
+}
+
+// Initialize canvas size
+resizeCanvas();
+
+// Resize canvas when the window is resized
+window.addEventListener('resize', resizeCanvas);
+
+// Event listeners for drawing
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mouseup', stopDrawing);

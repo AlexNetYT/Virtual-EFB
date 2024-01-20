@@ -56,16 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadingOverlay.style.opacity = "1"; // Set opacity to 1 after changing display
     pdfListContainer.innerHTML = "";
     // Check if the folder with the same name as icaoInput exists
-    fetch("/pdf_viewer/check_folder_exists", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "icao_input=" + encodeURIComponent(icaoInputValue),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.folder_exists) {
+
           // Folder exists, start the loading animation
           // loadingOverlay.style.opacity = '0'; // Set opacity to 0 before changing display
           pdfListContainer.innerHTML = "";
@@ -106,14 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
               filterPdfsByTag(tag, icaoInputValue);
             });
           });
-        } else {
-          // Folder doesn't exist, handle it accordingly
-          handleFolderNotFound(icaoInputValue);
-        }
-      })
-      .catch((error) => {
-        console.error("Error checking folder existence:", error);
-      });
   }
 
   function handleFolderNotFound(icaoInput) {

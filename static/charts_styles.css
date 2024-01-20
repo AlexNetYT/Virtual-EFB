@@ -10,7 +10,7 @@ body {
   background-color: #1e1e1e; /* Dark background for dark mode */
   color: #cccccc; /* Light gray text color */
 }
-
+/* if width <=1447px burger */
 .container {
   display: flex;
   height: 100vh;

@@ -23,46 +23,46 @@
           <div class="top-list-item">
             <div class="block-fuel">Block Fuel</div>
             <div class="separator-1"></div>
-            <div class="block-text"></div>
+            <div class="block-text" id="block_txt"></div>
           </div>
           <div class="top-list-item">
             <div class="block-fuel">Enroute</div>
             <div class="separator-1"></div>
-            <div class="entoute-text"></div>
+            <div class="entoute-text" id="enroute_txt"></div>
           </div>
           <div class="top-list-item">
             <div class="block-fuel">PAX</div>
             <div class="separator-1"></div>
-            <div class="pax-text"></div>
+            <div class="pax-text" id="pax_txt"></div>
           </div>
           <div class="top-list-item">
             <div class="block-fuel">Payload</div>
             <div class="separator-1"></div>
-            <div class="payload-text"></div>
+            <div class="payload-text" id="payload_txt"></div>
           </div>
           <div class="top-list-item">
             <div class="block-fuel">ZFW</div>
             <div class="separator-1"></div>
-            <div class="zfw-text"></div>
+            <div class="zfw-text" id="zfw_txt"></div>
           </div>
           <div class="top-list-item">
             <div class="block-fuel">TOW</div>
             <div class="separator-1"></div>
-            <div class="tow-text"></div>
+            <div class="tow-text" id="tow_txt"></div>
           </div>
         </div>
         <div class="main-block2">
           <div class="left-block-main">
             <div class="id-dep-arr-cs">
               <div class="leftmainmenu-item">
-                <input class="simbrief-id-input" placeholder="SimBrief ID"></input>
+                <input class="simbrief-id-input" placeholder="SimBrief ID" id="simbriefIdInput"></input>
                 <div class="load-button">
-                  <button class="loadbutton">SYNC OFP</button>
+                  <button class="loadbutton" id="simbriefLoad">SYNC OFP</button>
                 </div>
               </div>
               <div class="leftmainmenu-item2">
                 <div class="dep">
-                  <div class="departure-icao">ICAO</div>
+                  <div class="departure-icao" id="depart">ICAO</div>
                   <img class="get-dep-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}" />
                 </div>
                 <svg
@@ -80,12 +80,12 @@
                 </svg>
   
                 <div class="arr">
-                  <div class="arrival-icao">ICAO</div>
+                  <div class="arrival-icao" id="origin">ICAO</div>
                   <img class="get-arr-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}" />
                 </div>
               </div>
               <div class="leftmainmenu-item2">
-                <div class="dist">DIST: 0000NM
+                <div class="dist" id="dist_text">DIST: 0000NM
                 </div>
                 <div class="vuesax-linear-info-circle">
                   <svg
@@ -119,10 +119,10 @@
                     />
                   </svg>
                 </div>
-                <div class="mach">MACH: 0.00</div>
+                <div class="mach" id="mach">MACH: 0.00</div>
               </div>
               <div class="leftmainmenu-item2">
-                <div class="deptime">00:00</div>
+                <div class="deptime" id="dep_time">00:00</div>
                 <svg
                   class="clock"
                   width="25"
@@ -147,26 +147,39 @@
                   />
                 </svg>
   
-                <div class="arrtime">
+                <div class="arrtime" id="arr_time">
                   00:00
                 </div>
               </div>
             </div>
           </div>
           <div class="table">
-            <div class="route-table"></div>
+            <table class="route-table" tag="fixTable">
+              <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Ident</th>
+                    <th>Via</th>
+                    <th>EFOB</th>
+                    <th>Altitude (Feet)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Rows of fixes will be dynamically added here -->
+            </tbody>
+            </table>
           </div>
         </div>
       </div>
       <div class="map-block">
         <div class="image-block"></div>
         <div class="image-control-buttons">
-            <button class="loadbutton">Route on Map</button>
-            <button class="loadbutton">Vertical Profile</button>
+            <button class="loadbutton" style="font-size: 16px;">Route on Map</button>
+            <button class="loadbutton" style="font-size: 16px;">Vertical Profile</button>
         </div>
       </div>
     </div>
   </div>
-  <!-- <script src="{{ url_for('static', filename='ofp_script.js') }}"></script> -->
+  <script src="{{ url_for('static', filename='ofp_script.js') }}"></script>
 </body>
 </html>

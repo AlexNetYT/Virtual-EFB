@@ -94,7 +94,7 @@ def distribute(links):
                 {'filename': filename, "link": file['link'], 'airport': file['icao'], 'tags': ['AIRPORT']})
         else:
             pdf_info['pdfs'].append(
-                {'filename': filename, "link": file['link'], 'airport': file['icao'], 'tags': ['ETC']})
+                {'filename': filename, "link": file['link'], 'airport': file['icao'], 'tags': ['OTHER']})
     return pdf_info
 
 def collect_pdf(icao):

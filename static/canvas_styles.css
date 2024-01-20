@@ -1,52 +1,46 @@
 body {
-    background-color: #282c35;
-    color: #ececec;
-    font-family: 'Arial', sans-serif;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    margin-top: 5%;
-}
-
-.canvas-container {
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Light text color */
+  }
+  
+  .container {
     position: relative;
-    width: 80%;
-    max-width: 800px;
-    height: 60%;
-    max-height: 600px;
-}
-
-canvas {
-    border: 2px solid #4ea7e0;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-    width: 100%;
-    height: 100%;
-}
-
-.buttons-container {
+    width: 70%; /* 70% of viewport width */
+    height: 70%; /* 70% of viewport height */
+  }
+  
+  canvas {
+    border: 2px solid #fff;
+    cursor: crosshair;
+    border-radius: 8px;
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+  }
+  
+  .tools {
     position: absolute;
-    top: 95%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 92%;
+    left: 41%;
     display: flex;
-    gap: 38px;
-}
-
-button {
-    background-color: #4ea7e0;
-    color: #ececec;
-    border: 2px solid #4ea7e0;
-    border-radius: 5px;
-    padding: 10px;
+  }
+  
+  button {
+    padding: 8px 12px;
     cursor: pointer;
-    transition: background-color 0.3s cubic-bezier(0.65, 0.38, 0, 0.96);
-}
-
-button:hover {
-    background-color: #6ab8f7;
-}
-
-button:active {
-    border: 2px solid #3687bf;
-}
+    background-color: #777; /* Dark button background color */
+    color: #fff; /* Light button text color */
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+  }
+  
+  button:hover {
+    background-color: #999; /* Dark button background color on hover */
+  }
+  

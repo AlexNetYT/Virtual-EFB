@@ -16,6 +16,7 @@ def exit_handler():
 Log_flag = True
 port = 7325
 host = socket.gethostbyname(socket.gethostname())
+host = "192.168.1.13"
 app = Flask(__name__)
 if Log_flag:
     import logging

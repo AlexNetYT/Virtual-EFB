@@ -143,7 +143,7 @@ def distribute(directory, icao):
                 {'filename': filename, 'airport': icao.upper(), 'tags': ['AIRPORT']})
         else:
             pdf_info['pdfs'].append(
-                {'filename': filename, 'airport': icao.upper(), 'tags': ['ETC']})
+                {'filename': filename, 'airport': icao.upper(), 'tags': ['OTHER']})
     with open('pdf_info.json', 'w') as file:
         file.write(json.dumps(pdf_info))
 

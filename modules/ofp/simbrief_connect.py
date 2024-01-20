@@ -29,15 +29,10 @@ def get_simbrief_data(user_id):
 
 def compile_data(uid):
     dct = get_simbrief_data(uid)
-    try:
-        wunits = " " + json.loads(dct["OFP"]["api_params"]["acdata_parsed"])["wgtunits"]
-    except:
-        wunits = "KG"
+    wunits = " "+dct["OFP"]["params"]["units"]
     origin = dct["OFP"]["origin"]["icao_code"]
     destination = dct["OFP"]["destination"]["icao_code"]
-    callsign = dct["OFP"]["atc"]["callsign"]
     simbrief_id = dct["OFP"]["fetch"]["userid"]
-    FL = "Planned Altitude: FL"+dct["OFP"]["atc"]["initial_alt"]
     fixes = []
     for fix in dct["OFP"]["navlog"]['fix']:
         fixes.append({
@@ -47,11 +42,13 @@ def compile_data(uid):
             "fuelPlanOnboard": fix["fuel_plan_onboard"],
             "altitude": fix["altitude_feet"],
         })
+    mach = dct["OFP"]["general"]["cruise_mach"]
+    arr_time = f'BLOCK: {round(int(dct["OFP"]["times"]["est_block"])/60)}'
+    dep_time = f'AIR: {round(int(dct["OFP"]["times"]["est_time_enroute"])/60)}'
+    dist = "DIST: "+dct["OFP"]["general"]["route_distance"]
     map = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][0]['link']}"
     vp = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][-1]['link']}"
     pdf = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['files']['pdf']['link']}"
-    BlockTime_int = int(dct['OFP']['times']['est_block'])
-    BlockTime = "Block Time: "+":".join(str(datetime.timedelta(seconds=BlockTime_int)).split(':')[:2])
     load_sheet = {'block': dct["OFP"]['fuel']['plan_ramp']+wunits, 
                   'enroute': dct["OFP"]['fuel']['enroute_burn']+wunits,
                   'pax': dct["OFP"]['weights']['pax_count'],
@@ -60,12 +57,12 @@ def compile_data(uid):
                   'tow': str(round(int(dct["OFP"]['weights']['est_tow'])/1000, 1))+" T"}
     return {
         "simbriefId": simbrief_id,
-        "flightLevel": FL,
         "origin": origin,
+        "dep_time": dep_time,
+        "arr_time": arr_time,
+        "distance": dist,
+        "mach": mach,
         "destination": destination,
-        "callsign": callsign,
-        "flightLevel": FL,
-        "blockTime":BlockTime,
         "wunits": wunits,
         "fixes": fixes,
         "loadsheet": load_sheet,

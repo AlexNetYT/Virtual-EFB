@@ -1,6 +1,4 @@
-Certainly! Below is a basic structure for the README file based on the information provided in our dialog. You can customize it further based on your project's specifics:
 
----
 
 # EFB (Electronic Flight Bag) App
 

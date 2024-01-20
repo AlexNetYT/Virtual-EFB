@@ -8,6 +8,19 @@
         display: none;
     }
 }
+@keyframes load {
+    from {background-color: #1e1e1e;}
+    50% {background-color: #5cbcf2;}
+    to {background-color: #1e1e1e;}
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
 h1 {
     text-align: center;
 }
@@ -60,7 +73,44 @@ body {
     margin-top: 1.1%;
     margin-bottom: 1.1%;
     transition: all 0.5s ease-in-out;
-    height: 50svh;
+    height: 10svh;
+}
+.runway-indicator {
+    display: none;
+    position: relative;
+    justify-content: center;
+  align-items: center;
+
+}
+#compass-arrow {
+    transition: all 1.5s cubic-bezier(0.16, 0.08, 0, 0.96);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%; /* Заполнение высоты контейнера */
+    object-fit: cover; /* Масштабирование изображения, чтобы заполнить контейнер */
+    transform: rotate(0deg);
+}
+#runway {
+    transition: all 1.5s cubic-bezier(0.16, 0.08, 0, 0.96);
+    scale: 1.3;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%; /* Заполнение высоты контейнера */
+    object-fit: cover; /* Масштабирование изображения, чтобы заполнить контейнер */
+    transform: rotate(0deg);
+}
+#compass-circle {
+    /* position: fixed; */
+    aspect-ratio: 1/1; /* Устанавливаем соотношение сторон 1:1 */
+    z-index: 2;
+    margin: 0 auto; /* Центрирование контейнера по горизонтали */
+
 }
 .weather-modules {
     display: flex;
@@ -68,8 +118,25 @@ body {
     flex-direction: row;
     width: 90svw;
     justify-content: center;
+    align-content: center;
+    align-items: center;
 }
+.show_winds {
+    display: flex !important; /* Важно использовать !important, чтобы переопределить display: none */
+    animation: fadeIn 1.5s ease-in-out; /* Настройка времени анимации и функции сглаживания */
+  }
 .weather-container {
+    background-color: #333333;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    overflow: hidden;
+    transition: all 0.7s ease-in-out;
+    margin: 1%;
+    max-width: 500px;
+}
+.runways-container {
     background-color: #333333;
     padding: 20px;
     border-radius: 10px;
@@ -95,23 +162,26 @@ body {
     height: 100%;
 }
 .weather-details {
-    transition: opacity 0.7s, height 0.7s ease-in-out;
-}
-
-.weather_item,
-.weather_item div {
-    opacity: 0;
-    height: 0;
     overflow: hidden;
-    transition: opacity 0.7s, height 0.7s ease-in-out;
-}
+    transition: all 1s ease; /* Добавлено свойство transition для анимации высоты */
 
-.weather-details.opend .weather_item,
-.weather-details.opend .weather_item div {
-    opacity: 1;
-    height: auto;
 }
-
+.weather-details.show {
+    opacity: 1; /* Добавлено свойство opacity для плавного появления */
+}
+/* .weather-details p {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    font-size: 20px;
+} */
+/* УСТАНОВКА СВОЙСТВ В КОДЕ НА JS */
+.weather-details.closed {
+    height: 0; /* Начальная высота для анимации */
+    opacity: 0; /* Начальная непрозрачность для плавного появления */
+}
+.weather-details.opened {
+    height: auto; /* Высота автоматически подстраивается под контент */
+}
 .icao-input {
     display: flex;
     flex-direction: row; /* Change to column layout */

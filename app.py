@@ -56,7 +56,7 @@ def get_current_time():
     return jsonify(datetime.datetime.now().strftime('LT: %H:%M:%S'))
 @app.route("/get_current_time_utc")
 def get_current_time_utc():
-    return jsonify(datetime.datetime.utcnow().strftime('UTC: %H:%M:%S'))
+    return jsonify(datetime.datetime.now(datetime.UTC).strftime('UTC: %H:%M:%S'))
 global http_server
 def create_webview():
     webbrowser.open(f'http://{host}:{port}')
@@ -64,10 +64,7 @@ def run_server():
     http_server = WSGIServer((host, port), app)
     http_server.serve_forever()
 def stop_server(icon):
-    
     os._exit(1)
-    
-
 def create_tray_icon():
     image = Image.open("./static/images/favicon.ico")  # Replace with the path to your icon image
     menu = (item('🌐Open EFB', create_webview),item('🛑Stop Server', stop_server))

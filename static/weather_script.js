@@ -11,9 +11,11 @@ document.addEventListener("DOMContentLoaded", function () {
           loadWeatherBtn.click();
         }
       });
+      
     loadWeatherBtn.addEventListener("click", function () {
+        var weatherDetailsContainer = document.querySelector(".weather-details");
         var icaoCode = icaoCodeInput.value.trim().toUpperCase();
-
+        
         // Check if the ICAO code is not empty
         if (icaoCode.length === 4) {
             // Make an asynchronous request to the Flask server to fetch weather info
@@ -21,9 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(response => response.json())
                 .then(data => {
                     // Update the weather details on the page
-                    document.getElementById("metar-text").innerHTML = data['metar-text'];
-                    const result = Object.fromEntries(Object.entries(data).slice(1));  
+                    // document.getElementById("metar-text").innerHTML = data['metar-text'];
+                    const result = Object.fromEntries(Object.entries(data).slice(2));  
                     updateWeatherDetails(result);
+                    
+                    updateWind(data['wind-deg']);
                 })
                 .catch(error => {
                     console.error("Error fetching weather information:", error);
@@ -32,44 +36,68 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Please enter a valid ICAO code.");
         }
     });
-
-    function updateWeatherDetails(weatherData) {
-        var weatherDetailsContainer = document.querySelector(".weather-details");
-        var weatherDetailsContainerId = document.getElementById("weather-details-container");
-        weatherDetailsContainer.innerHTML = "";
-        weatherDetailsContainer.classList.remove("opend");
-        weatherDetailsContainer.classList.add("closed");
+    function updateWind(wind_deg) {
+        // let runway = document.getElementById('runway');
+        let wind = document.getElementById("compass-arrow");
+        document.querySelector('.runway-indicator').classList.add('show_winds');
+        setTimeout(function () {
+            
+            wind.style.transform = "rotate("+wind_deg+"deg)";
+        }, 1500)
         
-        // Populate weather details on the page
+        
+
+    }
+    function updateWeatherDetails(weatherData) {
+        var weatherDetailsContainerClass = document.querySelector(".weather-details");
+        var weatherDetailsContainer = document.getElementById("weather-details-container");
+        var separator = document.querySelector('.separator-vertical');
+        // Create a document fragment to hold the new elements
+        var fragment = document.createDocumentFragment();
+    
+        // Populate weather details on the fragment
         for (const [key, value] of Object.entries(weatherData)) {
             var p = document.createElement("p");
-            // var dib = document.createElement("div");
             p.innerHTML = `<strong>${key}:</strong> ${value}`;
             p.classList.add("weather_item");
-            // dib.innerHTML = `<div style="
-            //     width: 100%;
-            //     height: 5px;
-            //     background: #1f1f1f69;
-            //     border-radius: 189px;
-            // "></div>`;
-    
-            weatherDetailsContainer.appendChild(p);
-            // weatherDetailsContainer.appendChild(dib);
-    
-            // Trigger reflow to apply the initial state before transitioning
-            p.offsetHeight;
-            // dib.offsetHeight;
-    
-            // Apply class to trigger the transition
-            p.classList.add("show");
-            // dib.classList.add("show");
+            p.style.fontSize = "20px";
+            p.style.marginTop = "2%";
+            p.style.marginBottom = "2%";
+            // Append the paragraph to the fragment
+            fragment.appendChild(p);
         }
     
+        // Clear existing content and add the fragment to the container
+        weatherDetailsContainer.innerHTML = "";
+        weatherDetailsContainer.appendChild(fragment);
+    
+        // Get the new height of the container
+        var newHeight = weatherDetailsContainer.scrollHeight;
+        
+        // Set the initial height
+        weatherDetailsContainer.style.height = "0";
+    
+        // Trigger reflow to apply the initial state before transitioning
+        weatherDetailsContainer.offsetHeight;
+        
+        // Set the actual height with transition
+        weatherDetailsContainer.style.height = newHeight + "px";
+        
+        // Apply class to trigger the transition
+        weatherDetailsContainer.classList.add("show");
+        
         // Trigger the transition after a short delay
         setTimeout(function () {
             weatherDetailsContainer.classList.remove("closed");
-            weatherDetailsContainer.classList.add("opend");
+            weatherDetailsContainer.classList.add("opened");
+            var newsepHeight = document.querySelector(".weather-container").scrollHeight;
+            separator.style.height = newsepHeight-20 + "px";
+        console.log("1");
         }, 1000);
     }
+    
+    
+    
+        // Trigger the transition after a short delay
     
 });

@@ -17,6 +17,7 @@ def decode_metar(icao):
             sky = sky_cond.split('|') if len(metar_report.sky_conditions('|').split('|')) > 1 else sky_cond
             weather_data = {
             'metar-text': metar_str,
+            'wind-deg': round(metar_report.wind_dir._degrees),
             '🗼Airport': metar_dct['name'],
             '🕒Time of Observation': f"{metar_report.time.strftime('%H%M')}Z",
             '💨Wind': f"{round(metar_report.wind_dir._degrees)}° {metar_report.wind_speed.string().replace(' mps', 'MPS')} {''.join(['Gusts: ', str(metar_report.wind_gust)]) if metar_report.wind_gust != None else ''}",

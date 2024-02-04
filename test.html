@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя карта</title>
+  <!-- Подключение стилей Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    /* Установка размеров карты */
+    #map {
+      height: 400px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Создание контейнера для карты -->
+<div id="map"></div>
+
+<!-- Подключение библиотеки Leaflet -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+  // Инициализация карты с центром в координатах (широта, долгота) и начальным уровнем масштабирования
+  var mymap = L.map('map').setView([0, 0], 2);
+
+  // Добавление слоя OpenStreetMap
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors'
+  }).addTo(mymap);
+
+  // Пример добавления маркера
+  L.marker([51.505, -0.09]).addTo(mymap)
+    .bindPopup('Привет, я маркер!').openPopup();
+</script>
+
+</body>
+</html>

@@ -1,4 +1,16 @@
+var map = L.map('map').setView([0, 0], 2);
+var svgCode = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="drop-shadow" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" /></filter></defs><polygon points="100,20 180,180 20,180" stroke="#4fa3a3" stroke-width="15" fill="#333333" filter="url(#drop-shadow)" /></svg>'
 document.addEventListener("DOMContentLoaded", function () {
+  
+        
+        // Добавление слоя OpenStreetMap
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
+          minZoom: 0,
+          maxZoom: 20,
+          attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          ext: 'png'
+        }).addTo(map);
+  map.setView([43.446147, 39.942480], 100)
   var loadOFPBtn = document.getElementById("simbriefLoad");
   var simbriefIdInput = document.getElementById("simbriefIdInput");
   var mach = document.getElementById("flightlevel");
@@ -48,13 +60,25 @@ document.addEventListener("DOMContentLoaded", function () {
           console.error("Error fetching OFP information:", error);
         });
     }
+    var map = new ol.Map({
+      target: 'map',
+      layers: [
+        new ol.layer.Tile({
+          source: new ol.source.OSM()
+        })
+      ],
+      view: new ol.View({
+        center: ol.proj.fromLonLat([0, 0]),
+        zoom: 2
+      })
+    });
   });
-
   function changeIframe(url) {
     let view = document.getElementById("map");
     view.src = url;
   }
-
+  
+  
   function updateOFPDetails(ofpData) {
     var dist_text = document.getElementById("dist_text");
     var mach_text = document.getElementById("mach");
@@ -69,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var payload = document.getElementById("payload_txt");
     var zfw = document.getElementById("zfw_txt");
     var tow = document.getElementById("tow_txt");
+    var fixesTableBody = document.querySelector(".route-table tbody");
 
     dist_text.textContent = ofpData.distance;
     mach_text.textContent = ofpData.mach;
@@ -83,7 +108,11 @@ document.addEventListener("DOMContentLoaded", function () {
     payload.textContent = ofpData.loadsheet.payload;
     zfw.textContent = ofpData.loadsheet.zfw;
     tow.textContent = ofpData.loadsheet.tow;
-
+    var mh = document.getElementsByClassName("left-block-main")[0].offSetHeight;
+    var rt = document.getElementsByClassName("route-table")[0];
+    var t = document.getElementsByClassName("table")[0];
+    t.style.maxHeight = mh+"px";
+    rt.style.maxHeight = mh+"px";
     dist_text.style.fontSize = "20px";
     mach_text.style.fontSize = "20px";
     blockTime.style.fontSize = "20px";
@@ -92,15 +121,39 @@ document.addEventListener("DOMContentLoaded", function () {
        dest_f.style.fontSize = "20px";
     // Update the list of fixes
     fixesTableBody.innerHTML = "";
+    var lineCoordinates = [];
     ofpData.fixes.forEach((fix) => {
       var row = document.createElement("tr");
+      var latLng = L.latLng(fix.lat, fix.long);
+      lineCoordinates.push(latLng);
+
       row.innerHTML = `<td>${fix.name}</td>
                              <td>${fix.ident}</td>
                              <td>${fix.via}</td>
                              <td>${fix.fuelPlanOnboard}</td>
                              <td>${fix.altitude}</td>`;
       fixesTableBody.appendChild(row);
+      addMarker(fix.lat, fix.long, fix.ident);
     });
+    var polyline = L.polyline(lineCoordinates, { color: '#4fa3a3' }).addTo(map);
+    map.fitBounds(L.latLngBounds(lineCoordinates));
+    map.setZoom(map.getZoom() - 1);
+
+  }
+  function addMarker(lat, lng, name) {
+    
+    var icon = L.icon({
+      iconUrl: 'data:image/svg+xml,' + encodeURIComponent(svgCode), // Embed SVG as a Data URL
+        iconSize: [20, 20], // Adjust the size of the icon as needed
+        iconAnchor: [6, 6], // Position of the icon anchor relative to the icon center
+        popupAnchor: [5, -5] // Position of the popup anchor relative to the icon center
+    });
+
+    var marker = L.marker([lat, lng], { icon: icon }).addTo(map);
+
+    // You can also add a popup to the marker if needed
+    marker.bindPopup(name);
+
   }
   function updateLoadsheet(ofpData) {
     loadTableBody.innerHTML = "";

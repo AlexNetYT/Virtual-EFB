@@ -41,7 +41,10 @@ def compile_data(uid):
             "via": fix["via_airway"],
             "fuelPlanOnboard": fix["fuel_plan_onboard"],
             "altitude": fix["altitude_feet"],
+            "lat": fix["pos_lat"],
+            "long": fix['pos_long']
         })
+    fixes.reverse()
     mach = dct["OFP"]["general"]["cruise_mach"]
     arr_time = f'BLOCK: {round(int(dct["OFP"]["times"]["est_block"])/60)}'
     dep_time = f'AIR: {round(int(dct["OFP"]["times"]["est_time_enroute"])/60)}'

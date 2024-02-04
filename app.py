@@ -76,5 +76,5 @@ if __name__ == '__main__':
 
     tray_icon = create_tray_icon()
     flask_thread.start()
-    webbrowser.open(f'http://{host}:{port}')
+    # webbrowser.open(f'http://{host}:{port}')
     tray_icon.run()

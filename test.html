@@ -1,40 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Моя карта</title>
-  <!-- Подключение стилей Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <style>
-    /* Установка размеров карты */
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #333;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .toggle-container {
+            position: relative;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #555;
+            border-radius: 15px;
+            transition: 0.3s;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-input:checked + .toggle-slider {
+            background-color: #FFD700;
+            transform: translateX(30px);
+        }
+
+        .toggle-label {
+            position: absolute;
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 1; /* добавим z-index, чтобы метка была поверх слайдера */
+        }
+    </style>
 </head>
 <body>
-
-<!-- Создание контейнера для карты -->
-<div id="map"></div>
-
-<!-- Подключение библиотеки Leaflet -->
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-<script>
-  // Инициализация карты с центром в координатах (широта, долгота) и начальным уровнем масштабирования
-  var mymap = L.map('map').setView([0, 0], 2);
-
-  // Добавление слоя OpenStreetMap
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
-  }).addTo(mymap);
-
-  // Пример добавления маркера
-  L.marker([51.505, -0.09]).addTo(mymap)
-    .bindPopup('Привет, я маркер!').openPopup();
-</script>
-
+    <div class="toggle-container">
+        <input type="checkbox" class="toggle-input" id="toggle">
+        <div class="toggle-slider"></div>
+        <label for="toggle" class="toggle-label"></label>
+    </div>
 </body>
 </html>

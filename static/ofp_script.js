@@ -1,7 +1,8 @@
 var map = L.map('map').setView([0, 0], 2);
 var SyncFlag = 0;
 var msfsInterval;
-var apscg = '<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="210mm" transform="rotate(-45)" height="297mm" viewBox="0 0 210 297" version="1.1" id="svg903" inkscape:version="0.92.4 (5da689c313, 2019-01-14)" sodipodi:docname="airplane.svg"><defs id="defs897"><radialGradient fx="0" fy="0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(2.3466156,0,0,2.3466156,128.09223,197.86853)" spreadMethod="pad" id="radialGradient366"><stop style="stop-opacity:1;stop-color:#fff33b" offset="0" id="stop356" /><stop style="stop-opacity:1;stop-color:#fdc70c" offset="0.2005635" id="stop358" /><stop style="stop-opacity:1;stop-color:#fdc70c" offset="0.423191" id="stop360" /><stop style="stop-opacity:1;stop-color:#f3903f" offset="0.759448" id="stop362" /><stop style="stop-opacity:1;stop-color:#ed683c" offset="1" id="stop364" /></radialGradient><radialGradient fx="0" fy="0" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="matrix(2.3466243,0,0,2.3466243,120.94676,197.71942)" spreadMethod="pad" id="radialGradient324"><stop style="stop-opacity:1;stop-color:#fff33b" offset="0" id="stop314" /><stop style="stop-opacity:1;stop-color:#fdc70c" offset="0.2005635" id="stop316" /><stop style="stop-opacity:1;stop-color:#fdc70c" offset="0.423191" id="stop318" /><stop style="stop-opacity:1;stop-color:#f3903f" offset="0.759756" id="stop320" /><stop style="stop-opacity:1;stop-color:#ed683c" offset="1" id="stop322" /></radialGradient></defs><sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="0.4576767" inkscape:cx="332.66676" inkscape:cy="661.68003" inkscape:document-units="mm" inkscape:current-layer="g65-7" showgrid="false" inkscape:window-width="1920" inkscape:window-height="1001" inkscape:window-x="-9" inkscape:window-y="-9" inkscape:window-maximized="1" /><metadata id="metadata900"><rdf:RDF><cc:Work rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1"><g style="font-size:12px;fill:#1a1a1a;stroke:#ffffff" id="g65-7" font-size="12" transform="matrix(0.28289579,0,0,0.28289579,94.516679,23.549812)"><path style="fill:#1a1a1a;stroke-width:17.66908836;stroke:none" inkscape:connector-curvature="0" id="path49" d="m 272.11752,251.20854 c 32.20539,-32.2037 -12.33835,-74.30568 -44.13567,-42.50665 l -117.42516,117.42176 -268.99422,-71.10743 -44.84244,44.84414 221.711674,116.76601 -89.668825,89.66883 -69.709809,-8.55884 -35.46539,35.46539 79.086841,41.58244 41.582445,79.08686 35.465399,-35.46728 -8.152467,-69.30155 L 61.238728,459.4334 175.49928,679.69606 220.34172,634.85209 152.26628,371.2999 272.12621,251.21552 Z" /></g></g></svg>';
+var markers = [];
+var apscg = '<svg width="800px" height="800px" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" enable-background="new 0 0 76.00 76.00" xml:space="preserve"><path fill="#000000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 38,27.1542C 43.99,27.1542 48.8458,32.01 48.8458,38C 48.8458,43.99 43.99,48.8458 38,48.8458C 32.01,48.8458 27.1542,43.99 27.1542,38C 27.1542,32.01 32.01,27.1542 38,27.1542 Z M 38,16.625C 49.8051,16.625 59.375,26.1949 59.375,38C 59.375,49.8051 49.8051,59.375 38,59.375C 26.1949,59.375 16.625,49.8051 16.625,38C 16.625,26.1949 26.1949,16.625 38,16.625 Z M 38,20.5833C 28.381,20.5833 20.5833,28.381 20.5833,38C 20.5833,47.619 28.381,55.4167 38,55.4167C 47.6189,55.4167 55.4167,47.619 55.4167,38C 55.4167,28.381 47.619,20.5833 38,20.5833 Z "/></svg>';
 var icon = L.icon({
   iconUrl: 'data:image/svg+xml,' + encodeURIComponent(apscg), // Embed SVG as a Data URL
     iconSize: [40, 40], // Adjust the size of the icon as needed
@@ -13,12 +14,11 @@ var ap_marker = L.marker([0,0], { icon: icon }).addTo(map);
 var svgCode = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="drop-shadow" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" /></filter></defs><polygon points="100,20 180,180 20,180" stroke="#4fa3a3" stroke-width="15" fill="#333333" filter="url(#drop-shadow)" /></svg>'
 document.addEventListener("DOMContentLoaded", function () {
         // Добавление слоя OpenStreetMap
-        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.{ext}', {
-          minZoom: 0,
-          maxZoom: 20,
-          attribution: '&copy; <a href="https://www.stadiamaps.com/" target="_blank">Stadia Maps</a> &copy; <a href="https://openmaptiles.org/" target="_blank">OpenMapTiles</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-          ext: 'png'
-        }).addTo(map);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 20
+}).addTo(map);
   map.setView([43.446147, 39.942480], 100)
   var loadOFPBtn = document.getElementById("simbriefLoad");
   var simbriefIdInput = document.getElementById("simbriefIdInput");
@@ -36,14 +36,37 @@ document.addEventListener("DOMContentLoaded", function () {
       loadOFPBtn.click();
     }
   });
-  
+  function clearMap() {
+    // Удаляем каждый маркер из карты
+    for (var i = 0; i < markers.length; i++) {
+        myMap.removeLayer(markers[i]);
+    }
+
+    // Очищаем массив маркеров
+    markers = [];
+}
   loadOFPBtn.addEventListener("click", function () {
     // Mock API call to fetch OFP data based on SimBrief ID
     var simbriefId = simbriefIdInput.value.trim();
+    clearMap();
+    var loadOFPBtn = document.getElementById("simbriefLoad");
     if (simbriefId !== "") {
       // Replace this with actual API endpoint for OFP data
       fetch("/ofp/get_ofp_info/" + simbriefId)
-        .then((response) => response.json())
+        .then((response) => {
+          if (!response.ok) {
+            loadOFPBtn.style.backgroundColor = "#dc143c";
+            loadOFPBtn.style.borderColor = "#dc143c";
+            loadOFPBtn.style.color = "white";
+            setTimeout(function() {
+              loadOFPBtn.style.backgroundColor = "#ffb732";
+              loadOFPBtn.style.borderColor = "#ffb732";
+              loadOFPBtn.style.color = "black";
+            }, 1500);
+            throw new Error(`Network response was not ok, status: ${response.status}`);
+          }
+          return response.json();
+        })
         .then((data) => {
           // Update the page with OFP data
           updateOFPDetails(data);
@@ -54,13 +77,6 @@ document.addEventListener("DOMContentLoaded", function () {
           let pdf = data.pdf;
           bt.innerHTML = data.blockTime;
           fl.innerHTML = data.flightLevel;
-          document.getElementById("map").src = map;
-          document.getElementById("rtld").onclick = function () {
-            changeIframe(map);
-          };
-          document.getElementById("vpld").onclick = function () {
-            changeIframe(vertprof);
-          };
           // document.getElementById('ofpld').onclick = function() {changeIframe(pdf)};
         })
         .catch((error) => {
@@ -90,12 +106,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   
   function makeGetRequest() {
+    var MSFSButton = document.getElementById("msfs-button");
     // Выполняем GET-запрос
     fetch("/ofp/get_position/")
       .then((response) => {
         if (!response.ok) {
+          MSFSButton.style.backgroundColor = "#dc143c";
+          MSFSButton.style.borderColor = "#dc143c";
+          MSFSButton.style.color = "white";
           throw new Error(`Network response was not ok, status: ${response.status}`);
+         
         }
+          MSFSButton.style.backgroundColor = "#6fc276";
+        MSFSButton.style.borderColor = "#6fc276a1";
+        MSFSButton.style.color = "black";
         return response.json();
       })
       .then((data) => {
@@ -105,7 +129,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var lng = (data.long);
         var newLatLng = new L.LatLng(lat, lng);
         ap_marker.setLatLng(newLatLng); 
-        map.setView(newLatLng, 15);
+        
+        // map.setView(newLatLng, 15);
       })
       .catch((error) => {
         // Обработка ошибок
@@ -121,9 +146,11 @@ document.addEventListener("DOMContentLoaded", function () {
       MSFSButton.style.borderColor = "#6fc276a1";
       SyncFlag = 1;
     } else if (SyncFlag == 1) {
+      clearInterval(msfsInterval);
       MSFSButton.style.backgroundColor = "#ffb732";
       MSFSButton.style.borderColor = "#ffb732";
-      clearInterval(msfsInterval);
+      MSFSButton.style.color = "black";
+      
       SyncFlag = 0;
     }
 });
@@ -181,7 +208,7 @@ document.addEventListener("DOMContentLoaded", function () {
                              <td>${fix.fuelPlanOnboard}</td>
                              <td>${fix.altitude}</td>`;
       fixesTableBody.appendChild(row);
-      addMarker(fix.lat, fix.long, fix.ident);
+      addMarker(fix.lat, fix.long, fix.text);
     });
     var polyline = L.polyline(lineCoordinates, { color: '#4fa3a3' }).addTo(map);
     map.fitBounds(L.latLngBounds(lineCoordinates));
@@ -201,6 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // You can also add a popup to the marker if needed
     marker.bindPopup(name);
+    markers.push(marker);
 
   }
   function updateLoadsheet(ofpData) {

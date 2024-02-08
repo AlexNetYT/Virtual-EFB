@@ -6,7 +6,7 @@ def get_location():
         aq = AircraftRequests(sm, _time=2000)
         LATITUDE = aq.get("PLANE_LATITUDE")
         LONGITUDE = aq.get("PLANE_LONGITUDE")
-        HEADING = aq.get("PLANE_HEADING_DEGREES_GYRO")
+        HEADING = aq.get("MAGNETIC_COMPASS")
         sm.exit()
 
         return {

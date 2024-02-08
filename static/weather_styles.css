@@ -136,6 +136,13 @@ body {
     margin: 1%;
     max-width: 500px;
 }
+.main-block {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+}
+
 .runways-container {
     background-color: #333333;
     padding: 20px;
@@ -143,9 +150,10 @@ body {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     text-align: left;
     overflow: hidden;
-    transition: all 0.7s ease-in-out;
+    
     margin: 1%;
     max-width: 500px;
+    transition: all 0.7s ease-in-out;
 }
 .metar-text-block{
     background-color: #333333;
@@ -156,6 +164,7 @@ body {
     overflow: hidden;
     transition: all 0.7s ease-in-out;
     margin: 1%;
+    display: none;
 }
 
 .weather-container.open {

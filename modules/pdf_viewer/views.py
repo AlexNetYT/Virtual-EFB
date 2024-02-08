@@ -39,7 +39,7 @@ def check_folder_exists():
 
     # If the folder doesn't exist, call the new function to handle it
     return jsonify({"folder_exists": True})
-@pdf_viewer_bp.route('/get_pdfs_by_tag/<tag>/<icao>')
+@pdf_viewer_bp.route('/get_pdfs_by_tag/<tag>/<icao>', )
 def get_pdfs_by_tag(tag, icao):
     pdf_info = json.loads(collect_pdf_urls.collect_pdf(icao))
     filtered_pdfs = [pdf for pdf in pdf_info['pdfs']

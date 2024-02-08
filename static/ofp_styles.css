@@ -54,6 +54,50 @@
 .leaflet-popup-tip-container{
   color:#1d1d1d;
 }
+.upload-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  padding: 4%;
+  margin-top: 5%;
+  font-family: 'Code';
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.4);
+  background: #1d1d1d;
+  border-radius: 18px;
+}
+
+.file-input {
+  display: none;
+}
+
+.custom-upload {
+  margin-left: 1%;
+  width: 40%;
+  cursor: pointer;
+  padding: 15px 20px;
+  border: 2px solid #333333;
+  border-radius: 10px;
+  color: #e59400;
+  text-align: center;
+  font-size: 16px;
+  background-color: #333333;
+  box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+
+.soon-label{
+  position: relative;
+  z-index: 0;
+}
+.left-block {
+  display: flex;
+  flex-direction: column;
+}
+.custom-upload:hover {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
 .opened {
   width: 85vw;
     height: 85vh;

@@ -55,7 +55,7 @@
           <div class="left-block-main">
             <div class="id-dep-arr-cs">
               <div class="leftmainmenu-item">
-                <input class="simbrief-id-input" placeholder="SimBrief ID" id="simbriefIdInput"></input>
+                <input class="simbrief-id-input" placeholder="SimBrief ID" id="simbriefIdInput" autofocus></input>
                 <div class="load-button">
                   <button class="loadbutton" id="simbriefLoad">SYNC OFP</button>
                 </div>
@@ -171,11 +171,18 @@
           </div>
         </div>
       </div>
-      <div class="map-block">
-        <div class="image-block" id="map"></div>
-        <div class="image-control-buttons">
-            <div class="block-fuel" style="font-size: 16px; width: 40%;">MSFS Sync</div>
-            <button class="loadbutton" style="font-size: 16px; width: 60%;" id="msfs-button">Route on Map</button>
+      <div class="left-block">
+        <div class="map-block">
+          <div class="image-block" id="map"></div>
+          <div class="image-control-buttons">
+              <div class="block-fuel" style="font-size: 16px; width: 40%;">MSFS Sync</div>
+              <button class="loadbutton" style="font-size: 16px; width: 60%;" id="msfs-button">Route on Map</button>
+          </div>
+        </div>
+        <div class="upload-container">
+          <div class="block-fuel" style="font-size: 16px; width: 40%;">MSFS FlightPlan</div>
+          <label for="file-input" class="custom-upload">SOON</label>
+          <input type="file" id="file-input" class="file-input">
         </div>
       </div>
     </div>

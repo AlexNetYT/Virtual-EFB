@@ -16,7 +16,7 @@ def exit_handler():
 Log_flag = True
 port = 7325
 host = socket.gethostbyname(socket.gethostname())
-host = "192.168.1.13"
+# host = "192.168.1.13"
 app = Flask(__name__)
 if Log_flag:
     import logging
@@ -76,5 +76,5 @@ if __name__ == '__main__':
 
     tray_icon = create_tray_icon()
     flask_thread.start()
-    # webbrowser.open(f'http://{host}:{port}')
+    webbrowser.open(f'http://{host}:{port}')
     tray_icon.run()

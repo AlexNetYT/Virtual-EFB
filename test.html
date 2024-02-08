@@ -1,61 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            background-color: #333;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #1e1e1e;
+    }
 
-        .toggle-container {
-            position: relative;
-            width: 60px;
-            height: 30px;
-        }
+    .upload-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
 
-        .toggle-slider {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #555;
-            border-radius: 15px;
-            transition: 0.3s;
-        }
+    .file-input {
+      display: none;
+    }
 
-        .toggle-input {
-            display: none;
-        }
+    .custom-upload {
+      cursor: pointer;
+      padding: 15px 20px;
+      border: 2px solid #333333;
+      border-radius: 10px;
+      color: #e59400;
+      font-size: 16px;
+      background-color: #333333;
+      box-shadow: 0px 0px 12px 0px rgba(0, 0, 0, 0.4);
+    }
 
-        .toggle-input:checked + .toggle-slider {
-            background-color: #FFD700;
-            transform: translateX(30px);
-        }
-
-        .toggle-label {
-            position: absolute;
-            top: 50%;
-            left: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            z-index: 1; /* добавим z-index, чтобы метка была поверх слайдера */
-        }
-    </style>
+    .custom-upload:hover {
+      background-color: #1e1e1e;
+      color: #ffffff;
+    }
+  </style>
 </head>
 <body>
-    <div class="toggle-container">
-        <input type="checkbox" class="toggle-input" id="toggle">
-        <div class="toggle-slider"></div>
-        <label for="toggle" class="toggle-label"></label>
-    </div>
+
+  <div class="upload-container">
+    <label for="file-input" class="custom-upload">Выберите файл</label>
+    <input type="file" id="file-input" class="file-input">
+  </div>
+
 </body>
 </html>

@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
     loadWeatherBtn.addEventListener("click", function () {
         var weatherDetailsContainer = document.querySelector(".weather-details");
         var icaoCode = icaoCodeInput.value.trim().toUpperCase();
+        var metarblock = document.getElementById("metar-text");
         
         // Check if the ICAO code is not empty
         if (icaoCode.length === 4) {
@@ -24,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 .then(data => {
                     // Update the weather details on the page
                     // document.getElementById("metar-text").innerHTML = data['metar-text'];
+                    console.log(data);
+                    metarblock.innerHTML = data['metar-text'];
                     const result = Object.fromEntries(Object.entries(data).slice(2));  
                     updateWeatherDetails(result);
                     
@@ -54,7 +57,8 @@ document.addEventListener("DOMContentLoaded", function () {
         var separator = document.querySelector('.separator-vertical');
         // Create a document fragment to hold the new elements
         var fragment = document.createDocumentFragment();
-    
+        var windContainer = document.getElementsByClassName("runways-container")[0];
+        var metarblock = document.getElementById("metar-text");
         // Populate weather details on the fragment
         for (const [key, value] of Object.entries(weatherData)) {
             var p = document.createElement("p");
@@ -91,7 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
             weatherDetailsContainer.classList.remove("closed");
             weatherDetailsContainer.classList.add("opened");
             var newsepHeight = document.querySelector(".weather-container").scrollHeight;
+            windContainer.style.height = newsepHeight-40 +"px";
             separator.style.height = newsepHeight-20 + "px";
+            
+            metarblock.style.display = "block";
         console.log("1");
         }, 1000);
     }

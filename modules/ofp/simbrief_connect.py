@@ -35,6 +35,7 @@ def compile_data(uid):
     simbrief_id = dct["OFP"]["fetch"]["userid"]
     fixes = []
     for fix in dct["OFP"]["navlog"]['fix']:
+        waypoint_text = f"{fix["name"]} - {fix["ident"]}\nVia airway - {fix['via_airway']}\nEFOB - {fix['fuel_plan_onboard']}\nFlight at {fix['altitude_feet']} feet"
         fixes.append({
             "name": fix["name"],
             "ident": fix["ident"],
@@ -42,13 +43,14 @@ def compile_data(uid):
             "fuelPlanOnboard": fix["fuel_plan_onboard"],
             "altitude": fix["altitude_feet"],
             "lat": fix["pos_lat"],
-            "long": fix['pos_long']
+            "long": fix['pos_long'],
+            "text": waypoint_text
         })
     fixes.reverse()
-    mach = dct["OFP"]["general"]["cruise_mach"]
-    arr_time = f'BLOCK: {round(int(dct["OFP"]["times"]["est_block"])/60)}'
-    dep_time = f'AIR: {round(int(dct["OFP"]["times"]["est_time_enroute"])/60)}'
-    dist = "DIST: "+dct["OFP"]["general"]["route_distance"]
+    mach = "MACH: 0"+dct["OFP"]["general"]["cruise_mach"]
+    arr_time = f'BLOCK: {str(datetime.timedelta(minutes=round(int(dct["OFP"]["times"]["est_block"])/60)))[:-3]}'
+    dep_time = f'AIR: {str(datetime.timedelta(minutes=round(int(dct["OFP"]["times"]["est_time_enroute"])/60)))[:-3]}'
+    dist = "DIST: "+dct["OFP"]["general"]["route_distance"]+" NM"
     map = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][0]['link']}"
     vp = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['images']['map'][-1]['link']}"
     pdf = f"https://www.simbrief.com/ofp/uads/{dct['OFP']['files']['pdf']['link']}"

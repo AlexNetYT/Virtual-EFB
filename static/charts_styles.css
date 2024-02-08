@@ -222,22 +222,37 @@ li {
   -ms-transition: opacity 0.2s ease-in-out;
 }
 
-.loading-spinner {
-  border: 8px solid #44355b; /* Border color */
-  border-top: 8px solid #35ce8d; /* Spinner color */
+/* .loading-spinner {
+  border: 8px solid #44355b; /* Border color 
+  border-top: 8px solid #35ce8d; /* Spinner color 
   border-radius: 50%;
   width: 50px;
   height: 50px;
   animation: spin 1s linear infinite;
+} */
+/* HTML: <div class="loading-spinner"></div> */
+/* HTML: <div class="loading-spinner"></div> */
+.loading-spinner {  
+  border: solid #333333 8px;  
+  --r1: 154%;
+  --r2: 68.5%;
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%; 
+  background:
+    radial-gradient(var(--r1) var(--r2) at top   ,#0000 79.5%,#269af2 80%),
+    radial-gradient(var(--r1) var(--r2) at bottom,#269af2 79.5%,#0000 80%),
+    radial-gradient(var(--r1) var(--r2) at top   ,#0000 79.5%,#269af2 80%),
+    #ccc;
+  background-size: 50.5% 220%;
+  background-position: -100% 0%,0% 0%,100% 0%;
+  background-repeat:no-repeat;
+  animation: l9 2s infinite linear;
 }
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
+@keyframes l9 {
+    33%  {background-position:    0% 33% ,100% 33% ,200% 33% }
+    66%  {background-position: -100%  66%,0%   66% ,100% 66% }
+    100% {background-position:    0% 100%,100% 100%,200% 100%}
 }
 .welcome-overlay {
   display: flex;

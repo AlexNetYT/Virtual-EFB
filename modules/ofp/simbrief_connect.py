@@ -49,7 +49,7 @@ def compile_data(uid):
             "long": fix['pos_long'],
             "text": waypoint_text
         })
-    fixes.reverse()
+    # fixes.reverse()
     mach = "MACH: 0"+dct["OFP"]["general"]["cruise_mach"]
     arr_time = f'BLOCK: {str(datetime.timedelta(minutes=round(int(dct["OFP"]["times"]["est_block"])/60)))[:-3]}'
     dep_time = f'AIR: {str(datetime.timedelta(minutes=round(int(dct["OFP"]["times"]["est_time_enroute"])/60)))[:-3]}'

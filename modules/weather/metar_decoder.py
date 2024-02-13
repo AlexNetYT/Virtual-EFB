@@ -1,8 +1,26 @@
 from metar import Metar
 import json, requests
+from bs4 import BeautifulSoup
 global vat_spy_data
 vat_spy_data = {}
-
+def get_runways(icao):
+    # try:
+        url = f'https://vatrus.info/airport/{icao}'
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'lxml')
+        quotes  = soup.find("table", class_='text-center table table-sm table-striped table-responsive-lg')
+        items = quotes.find_all("th")
+        output = {}
+        for item in items:
+            string = str(item)
+            if "row" in string:
+                runway = item.text.replace("R", "").replace("L", "").replace("C", "")
+                hdg = int(str(runway.split("/")[0]).replace("0", "").replace("R", "").replace("L", "").replace("C", ""))*10
+                print(hdg)
+                output.update({runway: {"hdg": f"{hdg}", "url" : f'https://metar-taf.com/images/rwy/day-{str(runway.split("/")[0]).replace("0", "").replace("R", "").replace("L", "").replace("C", "")}.svg'}})
+        return output
+    # except Exception as e:
+    #     return {"status": 500, "error": e}
 def decode_metar(icao):
     global vat_spy_data
     icao=icao.upper()
@@ -45,6 +63,3 @@ def decode_metar(icao):
     #     # return f"Error parsing METAR: {e}"
     except Exception as err:
         return {"⚠️Error": "Something went wrong", "ℹ️ Hint":"Reenter code and try again", "📄": err}
-
-    
-print(decode_metar("uhmm"))

@@ -1,6 +1,9 @@
 import httpx
 import json, xmltodict
 import datetime
+import requests
+from bs4 import BeautifulSoup
+
 def get_simbrief_data(user_id):
     print(user_id)
     api_url = f'https://www.simbrief.com/api/xml.fetcher.php?userid={user_id}'

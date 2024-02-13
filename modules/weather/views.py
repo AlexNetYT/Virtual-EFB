@@ -1,5 +1,5 @@
 from flask import render_template, Blueprint, jsonify
-import modules.weather.metar_decoder as metar_decoder
+from . import metar_decoder
 weather_blueprint = Blueprint('weather', __name__)
 
 @weather_blueprint.route('/')
@@ -12,6 +12,13 @@ def get_weather_info(icao_code):
     weather_data = metar_decoder.decode_metar(icao_code)
 
     return jsonify(weather_data)
+
+@weather_blueprint.route("/get_runways/<icao>", methods=["GET"])
+def get_runways(icao):
+    runways = metar_decoder.get_runways(icao=icao.upper())
+    print(runways)
+    return jsonify(runways)
+
 @weather_blueprint.route('/?=<ICAO>')
 def render_with_weather(ICAO):
     print(ICAO)

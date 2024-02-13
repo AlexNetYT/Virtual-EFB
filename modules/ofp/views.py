@@ -10,6 +10,7 @@ def get_ofp_info(userid):
     js = simbrief_connect.compile_data(userid)
     # You can replace this with logic to fetch real OFP data
     return jsonify(js)
+
 @ofp_bp.route("/get_position/", methods=["GET"])
 def get_position():
     payload = msfs_connect.get_location()

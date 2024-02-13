@@ -1,0 +1,178 @@
+@import url('https://fonts.bunny.net/css?family=barlow:400,500&display=swap');
+
+html,
+button {
+	font-family: 'barlow', sans-serif;
+}
+
+body {
+	height: 100vh;
+	font-size: 1.25rem;
+	font-weight: 400;
+	line-height: 1.5;
+	overflow: hidden;
+}
+
+.container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	gap: 10px 0;
+	height: 100%;
+	width: 60%;
+	margin: 0 auto;
+}
+
+.toast-btn {
+	max-width: 700px;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 10px 5px;
+	margin: 2em auto;
+}
+
+.toast-btn {
+	padding: 1rem;
+	border: none;
+	color: #fff;
+	font-weight: 500;
+	border-radius: 3px;
+	cursor: pointer;
+	min-width: 150px;
+	transition: filter 0.2s ease-in-out, transform 0.3s ease-in-out;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1rem;
+	background-color: transparent;
+	outline: none;
+	background: #3498db;
+	color: #fff;
+} 
+  
+.toast-btn:hover {
+	filter: brightness(0.8);
+}
+
+button.success-toast {
+	background-color: #27ae60;
+}
+
+button.danger-toast {
+	background-color: #c0392b;
+}
+  
+button.info-toast {
+	background-color: #2980b9;
+}
+
+button.warning-toast {
+	background-color: #f39c12;
+}
+
+.toasts {
+	position: absolute;
+	top: 2rem;
+	right: 1rem;
+}
+	
+.toast-notification {
+  width: 350px;
+	margin-bottom: .75rem;
+  background: #f8f8ff;
+  border-radius: 2px;
+  box-shadow: 1px 7px 14px -5px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+.hide-toast {
+	display: none;
+}
+
+.toast-notification .toast-content {
+	font-weight: 400;
+	color: #353b48;
+	padding: 1rem;
+	display: flex;
+  justify-content: flex-start;
+	align-items: center;
+	gap: 0 1rem;
+}
+
+.toast-notification .toast-icon {
+	background-color: #27ae60;
+	color: #fff;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+  display: flex;
+  justify-content: center;
+	align-items: center;
+	flex-shrink: 0;
+}
+
+.toast-notification .toast-icon i {
+	font-size: 1.25rem;
+}
+
+.toast-notification .toast-progress {
+	height: 2px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+
+.toast-notification .toast-progress-bar {
+	background-color: #b7b7b7;
+	height: 2px;
+	animation: toastProgress 3s ease-in-out forwards;
+}
+
+.slide-in-slide-out {
+	animation: slideInRight 0.3s ease-in-out forwards, slideOutRight 0.5s ease-in-out forwards 3s;
+	transform: translateX(110%);
+}
+
+.slide-in-fade-out {
+	animation: slideInRight 0.3s ease-in-out forwards, fadeOut 0.5s ease-in-out forwards 3s;
+	transform: translateX(110%);
+}
+
+.wiggle-me {
+	animation: wiggle 2s ease-in;
+}
+
+@keyframes slideInRight { 
+	0% { transform: translateX(110%); }
+	75% { transform: translateX(-10%); }
+	100% { transform: translateX(0%); }
+}
+
+@keyframes slideOutRight { 
+	0% { transform: translateX(0%); }
+	25% { transform: translateX(-10%); }
+	100% { transform: translateX(110%); }
+}
+  
+@keyframes fadeOut {
+	0% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+@keyframes toastProgress {
+	0% { width: 100%; }
+	100% { width: 0%; }
+}
+
+@keyframes wiggle {
+	0%, 7% { transform: rotateZ(0); }
+	15% { transform: rotateZ(-13deg); }
+	20% { transform: rotateZ(9deg); }
+	25% { transform: rotateZ(-10deg); }
+	30% { transform: rotateZ(7deg); }
+	35% { transform: rotateZ(-2deg); }
+	40%, 100% { transform: rotateZ(0); }
+}

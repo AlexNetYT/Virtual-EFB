@@ -95,6 +95,7 @@ body {
 }
 
 .pdf-list {
+  flex: 1;
   width: 100%;
   transition: all 0.7 ease-in-out;
   margin-bottom: 10px;
@@ -163,7 +164,10 @@ li {
   box-shadow: 0 0 8px rgba(127, 253, 131, 0.793); /* Green box shadow on focus */
   /* font-weight: bolder;     */
 }
-
+.menu-wrapper {
+  display: flex;
+  flex-direction: column;
+}
 .menu-bar {
   display: flex;
   overflow-x: auto;
@@ -188,6 +192,14 @@ li {
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.5s ease-in-out;
+  display: block;
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 5px;
+  text-align: left;
+  border: none;
+  background-color: #fff; /* Set button background color */
+  cursor: pointer;
 }
 
 /* ... your existing styles ... */

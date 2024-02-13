@@ -45,7 +45,7 @@
     <div class="container">
       <iframe id="pdf-frame" class="pdf-viewer" src="" frameborder="0">
       </iframe>
-      <div class="pdf-list">
+      <div class="menu-wrapper">
         <h1 id="header">Enter ICAO</h1>
         <div class="pdf-controls">
           <input
@@ -56,15 +56,16 @@
           />
           <button id="loadPdfBtn">Load</button>
         </div>
-        <div class="menu-bar">
-          <button class="menu-button" data-tag="DEP">DEP</button>
-          <button class="menu-button" data-tag="ARR">ARR</button>
-          <button class="menu-button" data-tag="FINAL">FINAL</button>
-          <button class="menu-button" data-tag="AIRPORT">AIRPORT</button>
-          <!-- Add more buttons for other categories as needed -->
-          <button class="menu-button" data-tag="OTHER">OTHER</button>
-        </div>
-        <ul id="pdfList" class="pdf-list"></ul>
+        
+          <div class="menu-bar">
+              <button class="menu-button" data-tag="DEP">DEP</button>
+              <button class="menu-button" data-tag="ARR">ARR</button>
+              <button class="menu-button" data-tag="FINAL">FINAL</button>
+              <button class="menu-button" data-tag="AIRPORT">AIRPORT</button>
+              <!-- Add more buttons for other categories as needed -->
+              <button class="menu-button" data-tag="OTHER">OTHER</button>
+          </div>
+          <ul id="pdfList" class="pdf-list"></ul>
       </div>
     </div>
 

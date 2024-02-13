@@ -20,6 +20,43 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if the ICAO code is not empty
         if (icaoCode.length === 4) {
             // Make an asynchronous request to the Flask server to fetch weather info
+            fetch("/weather/get_runways/" + icaoCode)
+                .then(response => response.json())
+                .then(data => {
+                    // Update the weather details on the page
+                    // document.getElementById("metar-text").innerHTML = data['metar-text'];
+                    var runwaysButtonsDiv = document.querySelector('.runways-buttons');
+                    runwaysButtonsDiv.innerHTML = "";
+                    // Создаем кнопки на основе данных из объекта
+                    for (var key in data) {
+                        if (data.hasOwnProperty(key)) {
+                            // Создаем элемент кнопки
+                            var button = document.createElement('button');
+                            
+                            // Устанавливаем текст кнопки
+                            button.innerText = key;
+
+                            // Добавляем обработчик события клика для установки атрибута src
+                            button.addEventListener('click', function () {
+                                // Получаем значение (URL) из объекта data по ключу (тексту кнопки)
+                                var url = data[this.innerText];
+                                
+                                // Получаем элемент с id "runway"
+                                var runwayImage = document.getElementById('runway');
+                                runwayImage.style.transform = "rotate(" + url["hdg"] +"deg)";
+                                // Устанавливаем атрибут src элемента с id "runway"
+                                runwayImage.src = url["url"];
+                            });
+
+                            // Добавляем кнопку в div с классом "runways-buttons"
+                            runwaysButtonsDiv.appendChild(button);
+                        }
+                    }
+
+                })
+                .catch(error => {
+                    console.error("Error fetching weather information:", error);
+                });
             fetch("/weather/get_weather_info/" + icaoCode)
                 .then(response => response.json())
                 .then(data => {

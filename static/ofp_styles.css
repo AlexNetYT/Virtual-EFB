@@ -613,7 +613,10 @@ tr:hover {
     margin-bottom: 1svh;
     min-width: 400px;
     min-height: 500px;
+    flex-grow: 1;
     display: block;
+
+    transition: opacity 0.5s ease;
     /* position: relative; */
   }
   .image-control-buttons {

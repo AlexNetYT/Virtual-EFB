@@ -1,32 +1,39 @@
-var map = L.map('map').setView([0, 0], 2);
+var map = L.map("map").setView([0, 0], 2);
 var SyncFlag = 0;
 var msfsInterval;
 var markers = [];
-var apscg = '<svg width="800px" height="800px" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" enable-background="new 0 0 76.00 76.00" xml:space="preserve"><path fill="#000000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 38,27.1542C 43.99,27.1542 48.8458,32.01 48.8458,38C 48.8458,43.99 43.99,48.8458 38,48.8458C 32.01,48.8458 27.1542,43.99 27.1542,38C 27.1542,32.01 32.01,27.1542 38,27.1542 Z M 38,16.625C 49.8051,16.625 59.375,26.1949 59.375,38C 59.375,49.8051 49.8051,59.375 38,59.375C 26.1949,59.375 16.625,49.8051 16.625,38C 16.625,26.1949 26.1949,16.625 38,16.625 Z M 38,20.5833C 28.381,20.5833 20.5833,28.381 20.5833,38C 20.5833,47.619 28.381,55.4167 38,55.4167C 47.6189,55.4167 55.4167,47.619 55.4167,38C 55.4167,28.381 47.619,20.5833 38,20.5833 Z "/></svg>';
+var apscg =
+  '<svg width="800px" height="800px" viewBox="0 0 76 76" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" baseProfile="full" enable-background="new 0 0 76.00 76.00" xml:space="preserve"><path fill="#000000" fill-opacity="1" stroke-width="0.2" stroke-linejoin="round" d="M 38,27.1542C 43.99,27.1542 48.8458,32.01 48.8458,38C 48.8458,43.99 43.99,48.8458 38,48.8458C 32.01,48.8458 27.1542,43.99 27.1542,38C 27.1542,32.01 32.01,27.1542 38,27.1542 Z M 38,16.625C 49.8051,16.625 59.375,26.1949 59.375,38C 59.375,49.8051 49.8051,59.375 38,59.375C 26.1949,59.375 16.625,49.8051 16.625,38C 16.625,26.1949 26.1949,16.625 38,16.625 Z M 38,20.5833C 28.381,20.5833 20.5833,28.381 20.5833,38C 20.5833,47.619 28.381,55.4167 38,55.4167C 47.6189,55.4167 55.4167,47.619 55.4167,38C 55.4167,28.381 47.619,20.5833 38,20.5833 Z "/></svg>';
 var icon = L.icon({
-  iconUrl: 'data:image/svg+xml,' + encodeURIComponent(apscg), // Embed SVG as a Data URL
-    iconSize: [40, 40], // Adjust the size of the icon as needed
-    iconAnchor: [6, 6], // Position of the icon anchor relative to the icon center
-    popupAnchor: [5, -5] // Position of the popup anchor relative to the icon center
+  iconUrl: "data:image/svg+xml," + encodeURIComponent(apscg), // Embed SVG as a Data URL
+  iconSize: [40, 40], // Adjust the size of the icon as needed
+  iconAnchor: [6, 6], // Position of the icon anchor relative to the icon center
+  popupAnchor: [5, -5], // Position of the popup anchor relative to the icon center
 });
 
-var ap_marker = L.marker([0,0], { icon: icon }).addTo(map);
-var svgCode = '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="drop-shadow" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" /></filter></defs><polygon points="100,20 180,180 20,180" stroke="#4fa3a3" stroke-width="15" fill="#333333" filter="url(#drop-shadow)" /></svg>'
+var ap_marker = L.marker([0, 0], { icon: icon }).addTo(map);
+var svgCode =
+  '<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" xmlns:xlink="http://www.w3.org/1999/xlink"><defs><filter id="drop-shadow" height="150%"><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="black" /></filter></defs><polygon points="100,20 180,180 20,180" stroke="#4fa3a3" stroke-width="15" fill="#333333" filter="url(#drop-shadow)" /></svg>';
 document.addEventListener("DOMContentLoaded", function () {
-        // Добавление слоя OpenStreetMap
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-	maxZoom: 20
-}).addTo(map);
-  map.setView([43.446147, 39.942480], 100)
+  // Добавление слоя OpenStreetMap
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd",
+    maxZoom: 20,
+  }).addTo(map);
+  map.setView([43.446147, 39.94248], 100);
   var loadOFPBtn = document.getElementById("simbriefLoad");
   var simbriefIdInput = document.getElementById("simbriefIdInput");
   var mach = document.getElementById("flightlevel");
   var bt = document.getElementById("blocktime");
   var fixesTableBody = document.querySelector("#fixTable tbody");
+  var dest_weather = document.getElementById("get-arr-weather");
+  var dep_weather = document.getElementById("get-dep-weather");
   var loadTableBody = document.querySelector("#loadsheetTable tbody");
   var MSFSButton = document.getElementById("msfs-button");
+  var msfs_file = document.getElementById("file-input");
+
   simbriefIdInput.addEventListener("keypress", function (event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
@@ -39,12 +46,13 @@ document.addEventListener("DOMContentLoaded", function () {
   function clearMap() {
     // Удаляем каждый маркер из карты
     for (var i = 0; i < markers.length; i++) {
-        myMap.removeLayer(markers[i]);
+      myMap.removeLayer(markers[i]);
     }
 
     // Очищаем массив маркеров
     markers = [];
-}
+  }
+
   loadOFPBtn.addEventListener("click", function () {
     // Mock API call to fetch OFP data based on SimBrief ID
     var simbriefId = simbriefIdInput.value.trim();
@@ -58,12 +66,14 @@ document.addEventListener("DOMContentLoaded", function () {
             loadOFPBtn.style.backgroundColor = "#dc143c";
             loadOFPBtn.style.borderColor = "#dc143c";
             loadOFPBtn.style.color = "white";
-            setTimeout(function() {
+            setTimeout(function () {
               loadOFPBtn.style.backgroundColor = "#ffb732";
               loadOFPBtn.style.borderColor = "#ffb732";
               loadOFPBtn.style.color = "black";
             }, 1500);
-            throw new Error(`Network response was not ok, status: ${response.status}`);
+            throw new Error(
+              `Network response was not ok, status: ${response.status}`
+            );
           }
           return response.json();
         })
@@ -88,23 +98,94 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     var map = new ol.Map({
-      target: 'map',
+      target: "map",
       layers: [
         new ol.layer.Tile({
-          source: new ol.source.OSM()
-        })
+          source: new ol.source.OSM(),
+        }),
       ],
       view: new ol.View({
         center: ol.proj.fromLonLat([0, 0]),
-        zoom: 2
-      })
+        zoom: 2,
+      }),
     });
   });
   function changeIframe(url) {
     let view = document.getElementById("map");
     view.src = url;
   }
-  
+
+  msfs_file.addEventListener("change", handleFiles, false);
+  function handleFiles() {
+    const formData = new FormData();
+    var files = document.getElementById("msfs_file");
+    formData.append("file", this.files[0]);
+    const requestOptions = {
+        headers: {
+            "Content-Type": this.files[0].contentType, // This way, the Content-Type value in the header will always match the content type of the file
+        },
+        mode: "no-cors",
+        method: "POST",
+        files: this.files[0],
+        body: formData,
+    };
+    console.log(requestOptions);
+
+    fetch("/ofp/upload", requestOptions).then(
+        (response) => {
+          ofpData = response.json();
+          var dist_text = document.getElementById("dist_text");
+          var mach_text = document.getElementById("mach");
+          var origin_f = document.getElementById("origin");
+          var dest_f = document.getElementById("dest");
+          var blockTime = document.getElementById("dep_time");
+          var AirTime = document.getElementById("arr_time");
+      
+          var block = document.getElementById("block_txt");
+          var entroute = document.getElementById("enroute_txt");
+          var pax = document.getElementById("pax_txt");
+          var payload = document.getElementById("payload_txt");
+          var zfw = document.getElementById("zfw_txt");
+          var tow = document.getElementById("tow_txt");
+          var fixesTableBody = document.querySelector(".route-table tbody");
+      
+          origin_f.textContent = ofpData.origin;
+          dest_f.textContent = ofpData.destination;
+      
+          var mh = document.getElementsByClassName("left-block-main")[0].offSetHeight;
+          var rt = document.getElementsByClassName("route-table")[0];
+          var t = document.getElementsByClassName("table")[0];
+          t.style.maxHeight = mh + "px";
+          rt.style.maxHeight = mh + "px";
+          dist_text.style.fontSize = "20px";
+          mach_text.style.fontSize = "20px";
+          blockTime.style.fontSize = "20px";
+          AirTime.style.fontSize = "20px";
+          origin_f.style.fontSize = "20px";
+          dest_f.style.fontSize = "20px";
+          // Update the list of fixes
+          fixesTableBody.innerHTML = "";
+          var lineCoordinates = [];
+          ofpData.fixes.forEach((fix) => {
+            var row = document.createElement("tr");
+            var latLng = L.latLng(fix.lat, fix.long);
+            lineCoordinates.push(latLng);
+      
+            row.innerHTML = `<td>${fix.name}</td>
+                                   <td>${fix.ident}</td>
+                                   <td>${fix.via}</td>
+                                   <td></td>
+                                   <td></td>`;
+            fixesTableBody.appendChild(row);
+            addMarker(fix.lat, fix.long, fix.text);
+          });
+          var polyline = L.polyline(lineCoordinates, { color: "#4fa3a3" }).addTo(map);
+          map.fitBounds(L.latLngBounds(lineCoordinates));
+          map.setZoom(map.getZoom() - 1);
+        }
+    );
+    
+  }
   function makeGetRequest() {
     var MSFSButton = document.getElementById("msfs-button");
     // Выполняем GET-запрос
@@ -114,10 +195,11 @@ document.addEventListener("DOMContentLoaded", function () {
           MSFSButton.style.backgroundColor = "#dc143c";
           MSFSButton.style.borderColor = "#dc143c";
           MSFSButton.style.color = "white";
-          throw new Error(`Network response was not ok, status: ${response.status}`);
-         
+          throw new Error(
+            `Network response was not ok, status: ${response.status}`
+          );
         }
-          MSFSButton.style.backgroundColor = "#6fc276";
+        MSFSButton.style.backgroundColor = "#6fc276";
         MSFSButton.style.borderColor = "#6fc276a1";
         MSFSButton.style.color = "black";
         return response.json();
@@ -125,20 +207,20 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         // Обработка полученных данных
         console.log(data);
-        var lat = (data.lat);
-        var lng = (data.long);
+        var lat = data.lat;
+        var lng = data.long;
         var newLatLng = new L.LatLng(lat, lng);
-        ap_marker.setLatLng(newLatLng); 
-        
+        ap_marker.setLatLng(newLatLng);
+
         // map.setView(newLatLng, 15);
       })
       .catch((error) => {
         // Обработка ошибок
-        console.error('Error during fetch:', error.message);
+        console.error("Error during fetch:", error.message);
       });
   }
   // Выполняем запрос каждые 5 секунд
-  
+
   MSFSButton.addEventListener("click", function () {
     if (SyncFlag == 0) {
       msfsInterval = setInterval(makeGetRequest, 1000);
@@ -150,15 +232,30 @@ document.addEventListener("DOMContentLoaded", function () {
       MSFSButton.style.backgroundColor = "#ffb732";
       MSFSButton.style.borderColor = "#ffb732";
       MSFSButton.style.color = "black";
-      
+
       SyncFlag = 0;
     }
-});
+  });
+
+  dest_weather.addEventListener("click", function () {
+    var icao = document.getElementById("dest");
+    if (icao.innerHTML != "ICAO") {
+      a = new URL(window.location.origin + "/weather?ICAO=" + icao.innerHTML);
+      window.location = a;
+    }
+  });
+  dep_weather.addEventListener("click", function () {
+    var icao = document.getElementById("origin");
+    if (icao.innerHTML != "ICAO") {
+      a = new URL(window.location.origin + "/weather?ICAO=" + icao.innerHTML);
+      window.location = a;
+    }
+  });
   function updateOFPDetails(ofpData) {
     var dist_text = document.getElementById("dist_text");
     var mach_text = document.getElementById("mach");
     var origin_f = document.getElementById("origin");
-    var dest_f = document.getElementById("depart");
+    var dest_f = document.getElementById("dest");
     var blockTime = document.getElementById("dep_time");
     var AirTime = document.getElementById("arr_time");
 
@@ -186,14 +283,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var mh = document.getElementsByClassName("left-block-main")[0].offSetHeight;
     var rt = document.getElementsByClassName("route-table")[0];
     var t = document.getElementsByClassName("table")[0];
-    t.style.maxHeight = mh+"px";
-    rt.style.maxHeight = mh+"px";
+    t.style.maxHeight = mh + "px";
+    rt.style.maxHeight = mh + "px";
     dist_text.style.fontSize = "20px";
     mach_text.style.fontSize = "20px";
     blockTime.style.fontSize = "20px";
-      AirTime.style.fontSize = "20px";
-     origin_f.style.fontSize = "20px";
-       dest_f.style.fontSize = "20px";
+    AirTime.style.fontSize = "20px";
+    origin_f.style.fontSize = "20px";
+    dest_f.style.fontSize = "20px";
     // Update the list of fixes
     fixesTableBody.innerHTML = "";
     var lineCoordinates = [];
@@ -210,18 +307,16 @@ document.addEventListener("DOMContentLoaded", function () {
       fixesTableBody.appendChild(row);
       addMarker(fix.lat, fix.long, fix.text);
     });
-    var polyline = L.polyline(lineCoordinates, { color: '#4fa3a3' }).addTo(map);
+    var polyline = L.polyline(lineCoordinates, { color: "#4fa3a3" }).addTo(map);
     map.fitBounds(L.latLngBounds(lineCoordinates));
     map.setZoom(map.getZoom() - 1);
-
   }
   function addMarker(lat, lng, name) {
-    
     var icon = L.icon({
-      iconUrl: 'data:image/svg+xml,' + encodeURIComponent(svgCode), // Embed SVG as a Data URL
-        iconSize: [20, 20], // Adjust the size of the icon as needed
-        iconAnchor: [6, 6], // Position of the icon anchor relative to the icon center
-        popupAnchor: [5, -5] // Position of the popup anchor relative to the icon center
+      iconUrl: "data:image/svg+xml," + encodeURIComponent(svgCode), // Embed SVG as a Data URL
+      iconSize: [20, 20], // Adjust the size of the icon as needed
+      iconAnchor: [6, 6], // Position of the icon anchor relative to the icon center
+      popupAnchor: [5, -5], // Position of the popup anchor relative to the icon center
     });
 
     var marker = L.marker([lat, lng], { icon: icon }).addTo(map);
@@ -229,7 +324,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // You can also add a popup to the marker if needed
     marker.bindPopup(name);
     markers.push(marker);
-
   }
   function updateLoadsheet(ofpData) {
     loadTableBody.innerHTML = "";

@@ -13,7 +13,7 @@ from PIL import Image
 def exit_handler():
     print("Code to run before exiting")
     os.system(f"""start cmd /c Updater.exe {update_data[0].replace('"', '')} {update_data[1].replace('"', '')}""")  
-Log_flag = True
+Log_flag = 1
 port = 7325
 host = socket.gethostbyname(socket.gethostname())
 # host = "192.168.1.13"
@@ -73,7 +73,6 @@ def create_tray_icon():
     return icon
 if __name__ == '__main__':
     flask_thread = threading.Thread(target=run_server)
-
     tray_icon = create_tray_icon()
     flask_thread.start()
     webbrowser.open(f'http://{host}:{port}')

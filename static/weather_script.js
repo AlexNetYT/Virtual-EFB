@@ -2,25 +2,13 @@ document.addEventListener("DOMContentLoaded", function () {
     var loadWeatherBtn = document.getElementById("loadWeatherBtn");
     var icaoCodeInput = document.getElementById("icaoCode");
     var weatherDetailsContainer = document.querySelector(".weather-details");
-    icaoCodeInput.addEventListener("keypress", function(event) {
-        // If the user presses the "Enter" key on the keyboard
-        if (event.key === "Enter") {
-          // Cancel the default action, if needed
-          event.preventDefault();
-          // Trigger the button element with a click
-          loadWeatherBtn.click();
-        }
-      });
-      
-    loadWeatherBtn.addEventListener("click", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const myParam = urlParams.get('ICAO');
+    function weather(icaoCode) {
         var weatherDetailsContainer = document.querySelector(".weather-details");
-        var icaoCode = icaoCodeInput.value.trim().toUpperCase();
-        var metarblock = document.getElementById("metar-text");
         
-        // Check if the ICAO code is not empty
-        if (icaoCode.length === 4) {
-            // Make an asynchronous request to the Flask server to fetch weather info
-            fetch("/weather/get_runways/" + icaoCode)
+        var metarblock = document.getElementById("metar-text");
+        fetch("/weather/get_runways/" + icaoCode)
                 .then(response => response.json())
                 .then(data => {
                     // Update the weather details on the page
@@ -72,6 +60,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 .catch(error => {
                     console.error("Error fetching weather information:", error);
                 });
+    }
+    if (myParam != null) {
+        weather(myParam);
+    }
+    icaoCodeInput.addEventListener("keypress", function(event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          loadWeatherBtn.click();
+        }
+      });
+      
+    loadWeatherBtn.addEventListener("click", function () {
+        var weatherDetailsContainer = document.querySelector(".weather-details");
+        var icaoCode = icaoCodeInput.value.trim().toUpperCase();
+        var metarblock = document.getElementById("metar-text");
+        // Check if the ICAO code is not empty
+        if (icaoCode.length === 4) {
+            // Make an asynchronous request to the Flask server to fetch weather info
+            weather(icaoCode);
         } else {
             alert("Please enter a valid ICAO code.");
         }

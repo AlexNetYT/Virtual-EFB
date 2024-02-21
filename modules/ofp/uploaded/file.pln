@@ -1,0 +1,226 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SimBase.Document Type="AceXML" version="1,0">
+    <Descr>AceXML Document</Descr>
+    <FlightPlan.FlightPlan>
+        <Title>UUEE to URMM</Title>
+        <FPType>IFR</FPType>
+        <RouteType>HighAlt</RouteType>
+        <CruisingAlt>35000.000</CruisingAlt>
+        <DepartureID>UUEE</DepartureID>
+        <DepartureLLA>N55° 58' 21.00",E37° 24' 47.00",+000630.00</DepartureLLA>
+        <DestinationID>URMM</DestinationID>
+        <DestinationLLA>N44° 13' 37.00",E43° 4' 59.00",+001047.00</DestinationLLA>
+        <Descr>UUEE to URMM created by SimBrief</Descr>
+        <DepartureName>Sheremetyevo</DepartureName>
+        <DestinationName>Mineralnyye Vody</DestinationName>
+        <AppVersion>
+            <AppVersionMajor>11</AppVersionMajor>
+            <AppVersionBuild>282174</AppVersionBuild>
+        </AppVersion>
+        <ATCWaypoint id="UUEE">
+            <ATCWaypointType>Airport</ATCWaypointType>
+            <WorldPosition>N55° 58' 21.00",E37° 24' 47.00",+000630.00</WorldPosition>
+            <RunwayNumberFP>6</RunwayNumberFP>
+            <RunwayDesignatorFP>CENTER</RunwayDesignatorFP>
+            <ICAO>
+                <ICAOIdent>UUEE</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="EMGAS">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N54° 27' 28.00",E37° 50' 19.00",+033900.00</WorldPosition>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>EMGAS</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="EKTUT">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N53° 44' 41.00",E38° 29' 46.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>EKTUT</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="OSPER">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N53° 26' 21.00",E38° 55' 6.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>OSPER</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="NIBOK">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N52° 26' 41.00",E39° 35' 57.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>NIBOK</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="DISKI">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N52° 0' 27.00",E39° 57' 22.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>DISKI</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="TEDMO">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N51° 50' 49.00",E40° 5' 10.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>TEDMO</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="PETUK">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N51° 43' 6.00",E40° 11' 22.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>PETUK</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="OTVUT">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N51° 34' 8.00",E40° 20' 37.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>OTVUT</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="RITUN">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N51° 28' 16.00",E40° 26' 38.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>RITUN</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="OLBEG">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N51° 19' 1.00",E40° 36' 3.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>OLBEG</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="NIBIM">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N50° 36' 20.00",E40° 46' 13.00",+035000.00</WorldPosition>
+            <ATCAirway>T828</ATCAirway>
+            <ICAO>
+                <ICAORegion>UU</ICAORegion>
+                <ICAOIdent>NIBIM</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="AMDEL">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N49° 58' 23.00",E41° 23' 1.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>AMDEL</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="MOR">
+            <ATCWaypointType>VOR</ATCWaypointType>
+            <WorldPosition>N48° 20' 30.00",E41° 48' 1.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>MOR</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="RUGOT">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N47° 48' 25.00",E41° 59' 27.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>RUGOT</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="OKNOS">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N47° 1' 4.00",E42° 15' 53.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>OKNOS</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="USEMA">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N46° 41' 59.00",E42° 20' 30.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>USEMA</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="BEMIT">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N46° 5' 29.00",E42° 32' 12.00",+035000.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>BEMIT</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="NOSAK">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N45° 27' 29.00",E42° 43' 24.00",+027900.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>NOSAK</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="DIMOB">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N45° 1' 56.00",E42° 52' 14.00",+018600.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>DIMOB</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="ALZIT">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N44° 44' 11.00",E42° 58' 19.00",+012100.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>ALZIT</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="LARIN">
+            <ATCWaypointType>Intersection</ATCWaypointType>
+            <WorldPosition>N44° 35' 59.00",E43° 1' 7.00",+009300.00</WorldPosition>
+            <ATCAirway>M54</ATCAirway>
+            <ICAO>
+                <ICAORegion>UR</ICAORegion>
+                <ICAOIdent>LARIN</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+        <ATCWaypoint id="URMM">
+            <ATCWaypointType>Airport</ATCWaypointType>
+            <WorldPosition>N44° 13' 37.00",E43° 4' 59.00",+001047.00</WorldPosition>
+            <RunwayNumberFP>12</RunwayNumberFP>
+            <ICAO>
+                <ICAOIdent>URMM</ICAOIdent>
+            </ICAO>
+        </ATCWaypoint>
+    </FlightPlan.FlightPlan>
+</SimBase.Document>

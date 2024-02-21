@@ -1,0 +1,313 @@
+{
+  "SimBase.Document": {
+    "@Type": "AceXML",
+    "@version": "1,0",
+    "Descr": "AceXML Document",
+    "FlightPlan.FlightPlan": {
+      "Title": "UUEE to URMM",
+      "FPType": "IFR",
+      "RouteType": "HighAlt",
+      "CruisingAlt": "35000.000",
+      "DepartureID": "UUEE",
+      "DepartureLLA": "N55В° 58' 21.00\",E37В° 24' 47.00\",+000630.00",
+      "DestinationID": "URMM",
+      "DestinationLLA": "N44В° 13' 37.00\",E43В° 4' 59.00\",+001047.00",
+      "Descr": "UUEE to URMM created by SimBrief",
+      "DepartureName": "Sheremetyevo",
+      "DestinationName": "Mineralnyye Vody",
+      "AppVersion": { "AppVersionMajor": "11", "AppVersionBuild": "282174" },
+      "ATCWaypoint": [
+        {
+          "@id": "UUEE",
+          "ATCWaypointType": "Airport",
+          "WorldPosition": "N55В° 58' 21.00\",E37В° 24' 47.00\",+000630.00",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAOIdent": "UUEE" }
+        },
+        {
+          "@id": "EE306",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N56В° 0' 40.00\",E37В° 40' 46.00\",+006100.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "EE306" }
+        },
+        {
+          "@id": "RATKE",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N56В° 7' 35.10\",E37В° 37' 11.60\",+010200.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "RATKE" }
+        },
+        {
+          "@id": "OVVIM",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N56В° 4' 17.60\",E37В° 19' 47.10\",+013600.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "OVVIM" }
+        },
+        {
+          "@id": "IMIZO",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N55В° 51' 44.40\",E37В° 3' 44.70\",+018200.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "IMIZO" }
+        },
+        {
+          "@id": "GIGUN",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N55В° 44' 7.00\",E36В° 57' 29.90\",+020300.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "GIGUN" }
+        },
+        {
+          "@id": "ASLEK",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N55В° 35' 42.80\",E36В° 59' 50.90\",+022500.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "ASLEK" }
+        },
+        {
+          "@id": "FOZBE",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N55В° 25' 57.00\",E37В° 21' 6.00\",+025800.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "FOZBE" }
+        },
+        {
+          "@id": "LO",
+          "ATCWaypointType": "NDB",
+          "WorldPosition": "N55В° 21' 4.00\",E37В° 31' 37.00\",+027100.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "LO" }
+        },
+        {
+          "@id": "SOMAG",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N55В° 16' 27.20\",E37В° 39' 39.90\",+028000.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "SOMAG" }
+        },
+        {
+          "@id": "OFIRA",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N54В° 59' 52.50\",E37В° 43' 36.10\",+030400.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "OFIRA" }
+        },
+        {
+          "@id": "RIREN",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N54В° 53' 30.80\",E37В° 46' 15.20\",+031200.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "RIREN" }
+        },
+        {
+          "@id": "LAZIT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N54В° 39' 14.50\",E37В° 49' 34.00\",+032700.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "LAZIT" }
+        },
+        {
+          "@id": "EMGAS",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N54В° 27' 28.00\",E37В° 50' 19.00\",+033900.00",
+          "DepartureFP": "EMGA3E",
+          "RunwayNumberFP": "6",
+          "RunwayDesignatorFP": "CENTER",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "EMGAS" }
+        },
+        {
+          "@id": "EKTUT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N53В° 44' 41.00\",E38В° 29' 46.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "EKTUT" }
+        },
+        {
+          "@id": "OSPER",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N53В° 26' 21.00\",E38В° 55' 6.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "OSPER" }
+        },
+        {
+          "@id": "NIBOK",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N52В° 26' 41.00\",E39В° 35' 57.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "NIBOK" }
+        },
+        {
+          "@id": "DISKI",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N52В° 0' 27.00\",E39В° 57' 22.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "DISKI" }
+        },
+        {
+          "@id": "TEDMO",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N51В° 50' 49.00\",E40В° 5' 10.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "TEDMO" }
+        },
+        {
+          "@id": "PETUK",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N51В° 43' 6.00\",E40В° 11' 22.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "PETUK" }
+        },
+        {
+          "@id": "OTVUT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N51В° 34' 8.00\",E40В° 20' 37.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "OTVUT" }
+        },
+        {
+          "@id": "RITUN",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N51В° 28' 16.00\",E40В° 26' 38.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "RITUN" }
+        },
+        {
+          "@id": "OLBEG",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N51В° 19' 1.00\",E40В° 36' 3.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "OLBEG" }
+        },
+        {
+          "@id": "NIBIM",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N50В° 36' 20.00\",E40В° 46' 13.00\",+035000.00",
+          "ATCAirway": "T828",
+          "ICAO": { "ICAORegion": "UU", "ICAOIdent": "NIBIM" }
+        },
+        {
+          "@id": "AMDEL",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N49В° 58' 23.00\",E41В° 23' 1.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "AMDEL" }
+        },
+        {
+          "@id": "MOR",
+          "ATCWaypointType": "VOR",
+          "WorldPosition": "N48В° 20' 30.00\",E41В° 48' 1.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "MOR" }
+        },
+        {
+          "@id": "RUGOT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N47В° 48' 25.00\",E41В° 59' 27.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "RUGOT" }
+        },
+        {
+          "@id": "OKNOS",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N47В° 1' 4.00\",E42В° 15' 53.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "OKNOS" }
+        },
+        {
+          "@id": "USEMA",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N46В° 41' 59.00\",E42В° 20' 30.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "USEMA" }
+        },
+        {
+          "@id": "BEMIT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N46В° 5' 29.00\",E42В° 32' 12.00\",+035000.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "BEMIT" }
+        },
+        {
+          "@id": "NOSAK",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N45В° 27' 29.00\",E42В° 43' 24.00\",+027900.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "NOSAK" }
+        },
+        {
+          "@id": "DIMOB",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N45В° 1' 56.00\",E42В° 52' 14.00\",+018600.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "DIMOB" }
+        },
+        {
+          "@id": "ALZIT",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N44В° 44' 11.00\",E42В° 58' 19.00\",+012100.00",
+          "ATCAirway": "M54",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "ALZIT" }
+        },
+        {
+          "@id": "LARIN",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N44В° 35' 59.00\",E43В° 1' 7.00\",+009300.00",
+          "ATCAirway": "M54",
+          "ArrivalFP": "LARI5A",
+          "RunwayNumberFP": "12",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "LARIN" }
+        },
+        {
+          "@id": "MM008",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N44В° 30' 38.80\",E42В° 58' 12.20\",+007100.00",
+          "ArrivalFP": "LARI5A",
+          "RunwayNumberFP": "12",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "MM008" }
+        },
+        {
+          "@id": "MM003",
+          "ATCWaypointType": "Intersection",
+          "WorldPosition": "N44В° 25' 27.00\",E42В° 55' 22.60\",+005000.00",
+          "ArrivalFP": "LARI5A",
+          "RunwayNumberFP": "12",
+          "ICAO": { "ICAORegion": "UR", "ICAOIdent": "MM003" }
+        },
+        {
+          "@id": "URMM",
+          "ATCWaypointType": "Airport",
+          "WorldPosition": "N44В° 13' 37.00\",E43В° 4' 59.00\",+001047.00",
+          "RunwayNumberFP": "12",
+          "ICAO": { "ICAOIdent": "URMM" }
+        }
+      ]
+    }
+  }
+}

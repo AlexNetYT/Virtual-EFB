@@ -8,8 +8,9 @@
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='images/OFP.png') }}" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://raw.githubusercontent.com/openlayers/openlayers.github.io/master/en/v6.9.0/build/ol.js"></script>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v8.2.0/ol.css">
+
     <title>OFP Module</title>
 </head>
 <body>
@@ -62,8 +63,8 @@
               </div>
               <div class="leftmainmenu-item2">
                 <div class="dep">
-                  <div class="departure-icao" id="depart">ICAO</div>
-                  <img class="get-dep-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}" />
+                  <div class="departure-icao" id="origin">ICAO</div>
+                  <img class="get-dep-weather" id="get-dep-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}"/>
                 </div>
                 <svg
                   class="plane-icon"
@@ -80,8 +81,8 @@
                 </svg>
   
                 <div class="arr">
-                  <div class="arrival-icao" id="origin">ICAO</div>
-                  <img class="get-arr-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}" />
+                  <div class="arrival-icao" id="dest">ICAO</div>
+                  <img class="get-arr-weather" id="get-arr-weather" src="{{ url_for('static', filename='images/weather_icon.ico') }}" />
                 </div>
               </div>
               <div class="leftmainmenu-item2">

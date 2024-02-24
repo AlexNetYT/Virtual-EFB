@@ -321,6 +321,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var payload = document.getElementById("payload_txt");
     var zfw = document.getElementById("zfw_txt");
     var tow = document.getElementById("tow_txt");
+    var fixesTableHead = document.querySelector(".route-table thead tr");
+    
     var fixesTableBody = document.querySelector(".route-table tbody");
 
     dist_text.textContent = ofpData.distance;
@@ -363,6 +365,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fixesTableBody.appendChild(row);
       addMarker(fix.lat, fix.long, fix.text);
     });
+    fixesTableHead.style['box-shadow'] = "0px 10px 8px -8px #ffea97";
     var polyline = L.polyline(lineCoordinates, { color: "#4fa3a3" }).addTo(map);
     map.fitBounds(L.latLngBounds(lineCoordinates));
     map.setZoom(map.getZoom() - 1);

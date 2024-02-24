@@ -34,12 +34,17 @@ document.addEventListener("DOMContentLoaded", function () {
                                 runwayImage.style.transform = "rotate(" + url["hdg"] +"deg)";
                                 // Устанавливаем атрибут src элемента с id "runway"
                                 runwayImage.src = url["url"];
+                                
                             });
 
                             // Добавляем кнопку в div с классом "runways-buttons"
                             runwaysButtonsDiv.appendChild(button);
                         }
+                        
                     }
+
+                    document.getElementById("runway").src = data[Object.keys(data)[0]]["url"];
+                    document.getElementById("runway").style.transform = "rotate(" + data[Object.keys(data)[0]]["hdg"] +"deg)";
 
                 })
                 .catch(error => {
@@ -54,7 +59,8 @@ document.addEventListener("DOMContentLoaded", function () {
                     metarblock.innerHTML = data['metar-text'];
                     const result = Object.fromEntries(Object.entries(data).slice(2));  
                     updateWeatherDetails(result);
-                    
+                    document.getElementById("icaoCode").value = icaoCode;
+
                     updateWind(data['wind-deg']);
                 })
                 .catch(error => {

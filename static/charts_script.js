@@ -18,10 +18,39 @@ document.addEventListener("DOMContentLoaded", function () {
       loadPdfBtn.click();
     }
   });
-
+  const makeRequest = async (url, options = {}) => {
+    const { retries = 3, timeout = 2000 } = options;
+  
+    for (let i = 0; i < retries; i++) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), timeout);
+  
+        const response = await fetch(url, {
+          ...options,
+          signal: controller.signal
+        });
+  
+        clearTimeout(timeoutId);
+  
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+  
+        return response;
+      } catch (error) {
+        if (i === retries - 1) {
+          throw error;
+        }
+  
+        console.log(`Request failed, retrying in 500ms... ${error.message}`);
+        await new Promise(resolve => setTimeout(resolve, 500));
+      }
+    }
+  };
   function filterPdfsByTag(tag, icao) {
     // Fetch the PDF files for the specified tag from the server
-    fetch("/pdf_viewer/get_pdfs_by_tag/" + tag + "/" + icao)
+    makeRequest("/pdf_viewer/get_pdfs_by_tag/" + tag + "/" + icao)
       .then((response) => response.json())
       .then((data) => {
         // Clear existing PDF list
@@ -61,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
           // loadingOverlay.style.opacity = '0'; // Set opacity to 0 before changing display
           pdfListContainer.innerHTML = "";
           // Continue with other actions (e.g., fetching PDF files)
-          fetch("/pdf_viewer/get_pdfs_by_icao/" + icaoInputValue)
+          makeRequest("/pdf_viewer/get_pdfs_by_icao/" + icaoInputValue)
             .then((response) => response.json())
             .then((data) => {
               // Clear existing PDF list
@@ -83,7 +112,6 @@ document.addEventListener("DOMContentLoaded", function () {
               updatePdfButtonListeners();
               if (iframe.style.display == "") {
                 iframe.style.display = "flex";
-                leftpart.style.width = "400px";
               }
               hideLoadingOverlay();
             })

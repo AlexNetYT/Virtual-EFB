@@ -33,7 +33,14 @@ document.addEventListener("DOMContentLoaded", function () {
   var loadTableBody = document.querySelector("#loadsheetTable tbody");
   var MSFSButton = document.getElementById("msfs-button");
   var msfs_file = document.getElementById("file-input");
-
+  const closeBtn = document.getElementById("closeModal");
+  closeBtn.addEventListener("click", () => {
+    const modal = document.getElementById("modal");
+    modal.classList.remove("open");
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
+  });
   simbriefIdInput.addEventListener("keypress", function (event) {
     // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
@@ -45,17 +52,61 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   function clearMap() {
     // Удаляем каждый маркер из карты
-    for (var i = 0; i < markers.length; i++) {
-      myMap.removeLayer(markers[i]);
-    }
+    L.tileLayer(
+      "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
+      {
+        attribution:
+          '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: "abcd",
+        maxZoom: 20,
+      }
+    ).addTo(map);
+    map.setView([43.446147, 39.94248], 100);
+    document.getElementById("dist_text").innerHTML = "";
+    document.getElementById("mach").innerHTML = "";
+    document.getElementById("origin").innerHTML = "";
+    document.getElementById("dest").innerHTML = "";
+    document.getElementById("dep_time").innerHTML = "";
+    document.getElementById("arr_time").innerHTML = "";
+
+    document.getElementById("block_txt").innerHTML = "";
+    document.getElementById("enroute_txt").innerHTML = "";
+    document.getElementById("pax_txt").innerHTML = "";
+    document.getElementById("payload_txt").innerHTML = "";
+    document.getElementById("zfw_txt").innerHTML = "";
+    document.getElementById("tow_txt").innerHTML = "";
+    document.querySelector(".route-table tbody").innerHTML = "";
+    var layersToRemove = [];
+
+    map.eachLayer(function (layer) {
+      if (layer instanceof L.Polyline || layer instanceof L.Marker) {
+        layersToRemove.push(layer);
+      }
+    });
+
+    layersToRemove.forEach(function (layer) {
+      map.removeLayer(layer);
+    });
 
     // Очищаем массив маркеров
     markers = [];
   }
+  function riseModal(title, body) {
+    var error_body = document.getElementById("error-text");
+    var error_title = document.getElementById("error-title");
+    error_title.innerHTML = title;
+    error_body.innerHTML = body;
+    modal.style.display = "flex";
 
+    setTimeout(() => {
+      modal.classList.add("open");
+    }, 300);
+  }
   loadOFPBtn.addEventListener("click", function () {
     // Mock API call to fetch OFP data based on SimBrief ID
     var simbriefId = simbriefIdInput.value.trim();
+
+    const modal = document.getElementById("modal");
     clearMap();
     var loadOFPBtn = document.getElementById("simbriefLoad");
     if (simbriefId !== "") {
@@ -63,6 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fetch("/ofp/get_ofp_info/" + simbriefId)
         .then((response) => {
           if (!response.ok) {
+            riseModal("Something went wrong!","Server returned error")
             loadOFPBtn.style.backgroundColor = "#dc143c";
             loadOFPBtn.style.borderColor = "#dc143c";
             loadOFPBtn.style.color = "white";
@@ -78,16 +130,20 @@ document.addEventListener("DOMContentLoaded", function () {
           return response.json();
         })
         .then((data) => {
-          // Update the page with OFP data
-          updateOFPDetails(data);
-          // updateLoadsheet(data);
+          if (data.status != "OK") {
+            riseModal(data.status.split("|")[0],data.status.split("|")[1])
+          } else {
+            // Update the page with OFP data
+            updateOFPDetails(data);
+            // updateLoadsheet(data);
 
-          let map = data.map;
-          let vertprof = data.vertprof;
-          let pdf = data.pdf;
-          bt.innerHTML = data.blockTime;
-          fl.innerHTML = data.flightLevel;
-          // document.getElementById('ofpld').onclick = function() {changeIframe(pdf)};
+            let map = data.map;
+            let vertprof = data.vertprof;
+            let pdf = data.pdf;
+            bt.innerHTML = data.blockTime;
+            fl.innerHTML = data.flightLevel;
+            // document.getElementById('ofpld').onclick = function() {changeIframe(pdf)};
+          }
         })
         .catch((error) => {
           loadOFPBtn.classList.add("animat-sbbd");
@@ -121,70 +177,70 @@ document.addEventListener("DOMContentLoaded", function () {
     var files = document.getElementById("msfs_file");
     formData.append("file", this.files[0]);
     const requestOptions = {
-        headers: {
-            "Content-Type": this.files[0].contentType, // This way, the Content-Type value in the header will always match the content type of the file
-        },
-        mode: "no-cors",
-        method: "POST",
-        files: this.files[0],
-        body: formData,
+      headers: {
+        "Content-Type": this.files[0].contentType, // This way, the Content-Type value in the header will always match the content type of the file
+      },
+      mode: "no-cors",
+      method: "POST",
+      files: this.files[0],
+      body: formData,
     };
     console.log(requestOptions);
 
-    fetch("/ofp/upload", requestOptions).then(
-        (response) => {
-          ofpData = response.json();
-          var dist_text = document.getElementById("dist_text");
-          var mach_text = document.getElementById("mach");
-          var origin_f = document.getElementById("origin");
-          var dest_f = document.getElementById("dest");
-          var blockTime = document.getElementById("dep_time");
-          var AirTime = document.getElementById("arr_time");
-      
-          var block = document.getElementById("block_txt");
-          var entroute = document.getElementById("enroute_txt");
-          var pax = document.getElementById("pax_txt");
-          var payload = document.getElementById("payload_txt");
-          var zfw = document.getElementById("zfw_txt");
-          var tow = document.getElementById("tow_txt");
-          var fixesTableBody = document.querySelector(".route-table tbody");
-      
-          origin_f.textContent = ofpData.origin;
-          dest_f.textContent = ofpData.destination;
-      
-          var mh = document.getElementsByClassName("left-block-main")[0].offSetHeight;
-          var rt = document.getElementsByClassName("route-table")[0];
-          var t = document.getElementsByClassName("table")[0];
-          t.style.maxHeight = mh + "px";
-          rt.style.maxHeight = mh + "px";
-          dist_text.style.fontSize = "20px";
-          mach_text.style.fontSize = "20px";
-          blockTime.style.fontSize = "20px";
-          AirTime.style.fontSize = "20px";
-          origin_f.style.fontSize = "20px";
-          dest_f.style.fontSize = "20px";
-          // Update the list of fixes
-          fixesTableBody.innerHTML = "";
-          var lineCoordinates = [];
-          ofpData.fixes.forEach((fix) => {
-            var row = document.createElement("tr");
-            var latLng = L.latLng(fix.lat, fix.long);
-            lineCoordinates.push(latLng);
-      
-            row.innerHTML = `<td>${fix.name}</td>
+    fetch("/ofp/upload", requestOptions).then((response) => {
+      ofpData = response.json();
+      var dist_text = document.getElementById("dist_text");
+      var mach_text = document.getElementById("mach");
+      var origin_f = document.getElementById("origin");
+      var dest_f = document.getElementById("dest");
+      var blockTime = document.getElementById("dep_time");
+      var AirTime = document.getElementById("arr_time");
+
+      var block = document.getElementById("block_txt");
+      var entroute = document.getElementById("enroute_txt");
+      var pax = document.getElementById("pax_txt");
+      var payload = document.getElementById("payload_txt");
+      var zfw = document.getElementById("zfw_txt");
+      var tow = document.getElementById("tow_txt");
+      var fixesTableBody = document.querySelector(".route-table tbody");
+
+      origin_f.textContent = ofpData.origin;
+      dest_f.textContent = ofpData.destination;
+
+      var mh = document.getElementsByClassName("left-block-main")[0]
+        .offSetHeight;
+      var rt = document.getElementsByClassName("route-table")[0];
+      var t = document.getElementsByClassName("table")[0];
+      t.style.maxHeight = mh + "px";
+      rt.style.maxHeight = mh + "px";
+      dist_text.style.fontSize = "20px";
+      mach_text.style.fontSize = "20px";
+      blockTime.style.fontSize = "20px";
+      AirTime.style.fontSize = "20px";
+      origin_f.style.fontSize = "20px";
+      dest_f.style.fontSize = "20px";
+      // Update the list of fixes
+      fixesTableBody.innerHTML = "";
+      var lineCoordinates = [];
+      ofpData.fixes.forEach((fix) => {
+        var row = document.createElement("tr");
+        var latLng = L.latLng(fix.lat, fix.long);
+        lineCoordinates.push(latLng);
+
+        row.innerHTML = `<td>${fix.name}</td>
                                    <td>${fix.ident}</td>
                                    <td>${fix.via}</td>
                                    <td></td>
                                    <td></td>`;
-            fixesTableBody.appendChild(row);
-            addMarker(fix.lat, fix.long, fix.text);
-          });
-          var polyline = L.polyline(lineCoordinates, { color: "#4fa3a3" }).addTo(map);
-          map.fitBounds(L.latLngBounds(lineCoordinates));
-          map.setZoom(map.getZoom() - 1);
-        }
-    );
-    
+        fixesTableBody.appendChild(row);
+        addMarker(fix.lat, fix.long, fix.text);
+      });
+      var polyline = L.polyline(lineCoordinates, { color: "#4fa3a3" }).addTo(
+        map
+      );
+      map.fitBounds(L.latLngBounds(lineCoordinates));
+      map.setZoom(map.getZoom() - 1);
+    });
   }
   function makeGetRequest() {
     var MSFSButton = document.getElementById("msfs-button");

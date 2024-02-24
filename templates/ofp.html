@@ -17,6 +17,15 @@
     <a href="/" class="home-button">
         <img src="{{ url_for('static', filename='images/home.ico') }}" alt="Home">
     </a>
+    <div class="modal" id="modal">
+      <div class="modal-inner">
+        <div class="header">
+          <svg id="closeModal" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" role="img" class="iconify iconify--emojione" preserveAspectRatio="xMidYMid meet"><path d="M62 52c0 5.5-4.5 10-10 10H12C6.5 62 2 57.5 2 52V12C2 6.5 6.5 2 12 2h40c5.5 0 10 4.5 10 10v40z" fill="rgb(255, 183, 50)" id="close_back_svg"></path><path id="close_cross_svg" fill="#ffffff" d="M50 21.2L42.8 14L32 24.8L21.2 14L14 21.2L24.8 32L14 42.8l7.2 7.2L32 39.2L42.8 50l7.2-7.2L39.2 32z"></path></svg>
+          <h2 id="error-title">Something went wrong!</h2>
+        </div>
+        <p id="error-text">Check your simbrief ID and try again!</p>
+      </div>
+    </div>
 <div class="opened">
     <div class="central-block">
       <div class="main-block">

@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
   
         console.log(`Request failed, retrying in 500ms... ${error.message}`);
+        hideLoadingOverlay();
         await new Promise(resolve => setTimeout(resolve, 500));
       }
     }

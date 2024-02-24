@@ -11,7 +11,7 @@ def get_simbrief_data(user_id):
     try:
         response = httpx.get(api_url)
         print(response)
-        if response.status_code == 200:
+        if response.status_code == 200 or response.status_code == 400:
             o = xmltodict.parse(response.text) 
             json_sb = json.dumps(o)
             js_sb = json.loads(json_sb)

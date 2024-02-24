@@ -118,7 +118,9 @@
     cursor: pointer;
     transition: background-color 0.3s, border-color 0.3s;
 }
-
+#closeModal {
+  cursor: pointer;
+}
 .home-button img {
     width: 80%;
     height: 80%;

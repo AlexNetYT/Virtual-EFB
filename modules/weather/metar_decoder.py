@@ -26,10 +26,11 @@ def decode_metar(icao):
     icao=icao.upper()
     try:
         #get metar 
-        response = requests.request("GET", f"http://metartaf.ru/{icao}.json")
+        response = requests.request("GET", f"https://metar.vatsim.net/{icao}")
         if response.status_code == 200:
-            metar_dct = response.json()
-            metar_str = metar_dct['metar'][20:]
+            # metar_dct = response.json()
+            # metar_str = metar_dct['metar'][20:]
+            metar_str = response.text
             metar_report = Metar.Metar(metar_str)
             sky_cond = metar_report.sky_conditions('|')
             sky = sky_cond.split('|') if len(metar_report.sky_conditions('|').split('|')) > 1 else sky_cond

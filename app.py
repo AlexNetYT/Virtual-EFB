@@ -16,7 +16,6 @@ def exit_handler():
 Log_flag = 1
 port = 7325
 host = socket.gethostbyname(socket.gethostname())
-# host = "192.168.1.13"
 app = Flask(__name__)
 if Log_flag:
     import logging
@@ -66,7 +65,9 @@ def run_server():
 def stop_server(icon):
     os._exit(1)
 def create_tray_icon():
-    image = Image.open("./static/images/favicon.ico")  # Replace with the path to your icon image
+    icon_path = os.path.join(os.path.dirname(__file__), 'static', 'images', 'favicon.ico')
+
+    image = Image.open(icon_path)  # Replace with the path to your icon image
     menu = (item('🌐Open EFB', create_webview),item('🛑Stop Server', stop_server))
 
     icon = pystray.Icon("AeroNav EFB", image, "AeroNav EFB", menu)

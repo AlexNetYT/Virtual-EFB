@@ -5,3 +5,4 @@ modules/weather/__pycache__/
 .release/
 version.txt
 *.exe
+build/
